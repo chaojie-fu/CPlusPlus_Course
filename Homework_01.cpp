@@ -92,6 +92,6 @@ int main()
     MySort2(char_array);
 
     std::cout << "===== string type array =====" << std::endl;
-    const char * string_array[length]{"a", "0", "c", "y", "e", "k", "g", "h", "i", "z"};
+    const char * string_array[length]{"01", "00", "0a", "yiac", "e", "k", "g", "h", "i", "z"};
     MySort2(string_array);
 }
