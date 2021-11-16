@@ -3,7 +3,7 @@
 
 int main()
 {
-  MyMatrix Matrix_exp(10, 20);
+  MyMatrix<int> Matrix_exp(10, 20);
   std::cout << "Number of Columns: " << Matrix_exp.getNumCols() << std::endl;
   std::cout << "Number of Rows: " << Matrix_exp.getNumRows() << std::endl;
   Matrix_exp.setZeros();
