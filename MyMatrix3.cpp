@@ -93,7 +93,7 @@ T MyMatrix3<T>::getValue(size_t row, size_t col)
 };
 
 template <class T> 
-void MyMatrix3<T>::setValue(size_t col, size_t row, T new_value)
+void MyMatrix3<T>::setValue(size_t row, size_t col, T new_value)
 {
   matrix[col][row] = new_value;
 };
