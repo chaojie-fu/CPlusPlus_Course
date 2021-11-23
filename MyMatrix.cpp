@@ -29,6 +29,29 @@ MyMatrix<T>::MyMatrix(size_t f_num_cols, size_t f_num_rows)
   setZeros();
 };
 
+template <class T>
+MyMatrix<T>::MyMatrix(MyMatrix & oldMatrix)
+{
+  num_cols = oldMatrix.getNumCols();
+  num_rows = oldMatrix.getNumRows();
+
+  matrix = new T*[num_cols];
+  for (size_t num_col= 0; num_col < num_cols; num_col++)
+  {
+    matrix[num_col] = new T[num_rows];
+  }
+
+  /* deep-copy value of the old matrix
+    */
+  for (size_t num_col = 0; num_col < num_cols; num_col ++)
+  {
+    for (size_t num_row = 0; num_row < num_rows; num_row ++)
+    {
+      matrix[num_col][num_row] = oldMatrix.getValue(num_col, num_row);
+    }
+  }
+}
+
 template <class T> 
 MyMatrix<T>::~MyMatrix(void)
 {

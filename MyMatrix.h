@@ -9,6 +9,7 @@ class MyMatrix
   public:
     MyMatrix();
     MyMatrix(size_t f_num_cols, size_t f_num_rows);
+    MyMatrix(MyMatrix &);
     ~MyMatrix();
     size_t getNumCols();
     size_t getNumRows();
