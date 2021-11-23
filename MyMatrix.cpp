@@ -17,7 +17,7 @@ MyMatrix<T>::MyMatrix()
 };
 
 template <class T> 
-MyMatrix<T>::MyMatrix(size_t f_num_cols, size_t f_num_rows)
+MyMatrix<T>::MyMatrix(size_t f_num_rows, size_t f_num_cols)
 {
   num_cols = f_num_cols;
   num_rows = f_num_rows;
@@ -47,7 +47,7 @@ MyMatrix<T>::MyMatrix(MyMatrix & oldMatrix)
   {
     for (size_t num_row = 0; num_row < num_rows; num_row ++)
     {
-      matrix[num_col][num_row] = oldMatrix.getValue(num_col, num_row);
+      matrix[num_col][num_row] = oldMatrix.getValue(num_row, num_col);
     }
   }
 }
@@ -87,13 +87,13 @@ void MyMatrix<T>::setZeros()
 };
 
 template <class T> 
-T MyMatrix<T>::getValue(size_t col, size_t row)
+T MyMatrix<T>::getValue(size_t row, size_t col)
 {
   return matrix[col][row];
 };
 
 template <class T> 
-void MyMatrix<T>::setValue(size_t col, size_t row, T new_value)
+void MyMatrix<T>::setValue(size_t row, size_t col, T new_value)
 {
   matrix[col][row] = new_value;
 };
