@@ -8,8 +8,9 @@ int main()
   std::cout << "Number of Rows: " << Matrix_exp.getNumRows() << std::endl;
   Matrix_exp.setZeros();
   Matrix_exp.setValue(1, 2, 10.0);
-  std::cout << Matrix_exp.getValue(5, 10) << std::endl;
-  std::cout << Matrix_exp.getValue(1, 2) << std::endl;
+  Matrix_exp.printMatrix();
+  std::cout << "Element at (6, 11): " << Matrix_exp.getValue(5, 10) << std::endl;
+  std::cout << "Element at (2, 3): " << Matrix_exp.getValue(1, 2) << std::endl;
 
   return 0;
 }

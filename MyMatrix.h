@@ -15,4 +15,5 @@ class MyMatrix
     void setZeros();
     T getValue(size_t col, size_t row);
     void setValue(size_t col, size_t row, T new_value);
+    void printMatrix();
 };

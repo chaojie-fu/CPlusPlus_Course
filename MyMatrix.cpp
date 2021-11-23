@@ -13,6 +13,7 @@ MyMatrix<T>::MyMatrix()
   {
     matrix[num_col] = new T[num_rows];
   }
+  setZeros();
 };
 
 template <class T> 
@@ -25,6 +26,7 @@ MyMatrix<T>::MyMatrix(size_t f_num_cols, size_t f_num_rows)
   {
     matrix[num_col] = new T[num_rows];
   }
+  setZeros();
 };
 
 template <class T> 
@@ -72,6 +74,21 @@ void MyMatrix<T>::setValue(size_t col, size_t row, T new_value)
 {
   matrix[col][row] = new_value;
 };
+
+template <class T>
+void MyMatrix<T>::printMatrix()
+{
+  std::cout << "Printing Matrix:" << std::endl;
+  for (size_t row = 0; row < num_rows; row ++)
+  {
+    for (size_t col = 0; col < num_cols; col ++)
+    {
+      std::cout << matrix[col][row] << "\t";
+    }
+    std::cout << std::endl;
+  }
+  std::cout << "Printed Matrix." <<std::endl;
+}
 
 /*
   Add the following lines to avoid 'underfined references'
