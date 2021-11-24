@@ -3,7 +3,7 @@
 
 int main()
 {
-  MyMatrix3<int> Matrix_exp(10, 20);
+  MyMatrix3<int> Matrix_exp(20, 10);
 
   /* test basic functions
     */
@@ -20,9 +20,9 @@ int main()
   MyMatrix3<int> Matrix_copy = Matrix_exp;
   Matrix_copy.printMatrix();
 
-//   MyMatrix3<int> Matrix_sum();
-//   Matrix_sum.printMatrix();
-  MyMatrix3<int> Matrix_sum(10, 20);
-  Matrix_sum = Matrix_copy + Matrix_exp;
+  MyMatrix3<int> Matrix_sum(20, 10);
+  Matrix_sum = Matrix_exp;
+  // Matrix_sum = Matrix_exp + Matrix_copy;
+  Matrix_sum.printMatrix();
   return 0;
 }

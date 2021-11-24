@@ -17,7 +17,7 @@ MyMatrix3<T>::MyMatrix3()
 };
 
 template <class T> 
-MyMatrix3<T>::MyMatrix3(size_t f_num_cols, size_t f_num_rows)
+MyMatrix3<T>::MyMatrix3(size_t f_num_rows, size_t f_num_cols)
 {
   num_cols = f_num_cols;
   num_rows = f_num_rows;
@@ -111,6 +111,41 @@ void MyMatrix3<T>::printMatrix()
     std::cout << std::endl;
   }
   std::cout << "Printed Matrix." <<std::endl;
+};
+
+template <class T>
+MyMatrix3<T> & MyMatrix3<T>::operator=(MyMatrix3<T> & Matrix)
+{
+  this -> num_cols = Matrix.getNumCols();
+  this -> num_rows = Matrix.getNumRows();
+  this -> matrix = new T*[this -> num_cols];
+  for (size_t num_col= 0; num_col < this -> num_cols; num_col ++)
+  {
+    this -> matrix[num_col] = new T[num_rows];
+  }
+
+  for (size_t num_col = 0; num_col < this -> num_cols; num_col ++)
+  {
+    for (size_t num_row = 0; num_row< this -> num_rows; num_row ++)
+    {
+      this -> matrix[num_col][num_row] = Matrix.getValue(num_row, num_col);
+    }
+  }
+  return *this;
+};
+
+template <class T>
+MyMatrix3<T> MyMatrix3<T>::operator+(MyMatrix3<T> & Matrix)
+{
+  MyMatrix3<T> Matrix_return(this -> getNumRows(), this -> getNumCols());
+  for (size_t num_col = 0; num_col < this -> num_cols; num_col ++)
+  {
+    for (size_t num_row = 0; num_row< this -> num_rows; num_row ++)
+    {
+      Matrix_return.setValue(num_row, num_col, this -> getValue(num_row, num_col) + Matrix.getValue(num_row, num_col));
+    }
+  }
+  return Matrix_return;
 }
 
 /*
