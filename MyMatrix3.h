@@ -21,5 +21,5 @@ class MyMatrix3
     /* overload operators
       */
     MyMatrix3& operator = (MyMatrix3 & Matrix);
-    MyMatrix3 operator + (MyMatrix3 & Matrix);
+    MyMatrix3& operator + (MyMatrix3 & Matrix);
 };

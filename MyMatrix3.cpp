@@ -6,6 +6,7 @@
 template <class T> 
 MyMatrix3<T>::MyMatrix3()
 {
+  std::cout << "Constructor" << std::endl;
   num_cols = 3;
   num_rows = 3;
   matrix = new T*[num_cols];
@@ -19,6 +20,7 @@ MyMatrix3<T>::MyMatrix3()
 template <class T> 
 MyMatrix3<T>::MyMatrix3(size_t f_num_rows, size_t f_num_cols)
 {
+  std::cout << "Constructor" << std::endl;
   num_cols = f_num_cols;
   num_rows = f_num_rows;
   matrix = new T*[num_cols];
@@ -32,6 +34,7 @@ MyMatrix3<T>::MyMatrix3(size_t f_num_rows, size_t f_num_cols)
 template <class T>
 MyMatrix3<T>::MyMatrix3(MyMatrix3 & oldMatrix)
 {
+  std::cout << "Constructor" << std::endl;
   num_cols = oldMatrix.getNumCols();
   num_rows = oldMatrix.getNumRows();
 
@@ -55,6 +58,7 @@ MyMatrix3<T>::MyMatrix3(MyMatrix3 & oldMatrix)
 template <class T> 
 MyMatrix3<T>::~MyMatrix3(void)
 {
+  std::cout << "Deconstructor" << std::endl;
   for (size_t num_col = 0; num_col < num_cols; num_col++)
   {
     delete[] matrix[num_col];
@@ -135,9 +139,11 @@ MyMatrix3<T> & MyMatrix3<T>::operator=(MyMatrix3<T> & Matrix)
 };
 
 template <class T>
-MyMatrix3<T> MyMatrix3<T>::operator+(MyMatrix3<T> & Matrix)
+MyMatrix3<T> & MyMatrix3<T>::operator+(MyMatrix3<T> & Matrix)
 {
-  MyMatrix3<T> Matrix_return(this -> getNumRows(), this -> getNumCols());
+  /* solve the return problem for classes with pointers, but not delicate enough.
+    */
+  static MyMatrix3<T> Matrix_return(this -> getNumRows(), this -> getNumCols());
   for (size_t num_col = 0; num_col < this -> num_cols; num_col ++)
   {
     for (size_t num_row = 0; num_row< this -> num_rows; num_row ++)
