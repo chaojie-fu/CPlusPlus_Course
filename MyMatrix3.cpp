@@ -65,6 +65,14 @@ MyMatrix3<T>::~MyMatrix3(void)
 template <class T>
 MyMatrix3<T> & MyMatrix3<T>::operator=(MyMatrix3<T> & Matrix)
 {
+  /* raise error if the sizes of the two matrices not match.
+    */
+  if ((this->num_cols != Matrix.getNumCols()) || (this->num_rows != Matrix.getNumRows()))
+  {
+    std::cout << "ERROR: SIZE OF THE TWO MATRICES NOT MATCH!" << std::endl;
+    exit(-1);
+  }
+
   this->num_cols = Matrix.getNumCols();
   this->num_rows = Matrix.getNumRows();
   this->matrix = new T*[this->num_cols];
@@ -90,7 +98,7 @@ MyMatrix3<T> & MyMatrix3<T>::operator+(MyMatrix3<T> & Matrix)
     */
   if ((this->num_cols != Matrix.getNumCols()) || (this->num_rows != Matrix.getNumRows()))
   {
-    std::cout << "ERROR: SIZE OF THE TWO MATRICES NOT MATCH!" std::endl;
+    std::cout << "ERROR: SIZE OF THE TWO MATRICES NOT MATCH!" << std::endl;
     exit(-1);
   }
 
@@ -103,6 +111,37 @@ MyMatrix3<T> & MyMatrix3<T>::operator+(MyMatrix3<T> & Matrix)
     for (size_t num_row = 0; num_row< this->num_rows; num_row ++)
     {
       Matrix_return.setValue(num_row, num_col, this->getValue(num_row, num_col) + Matrix.getValue(num_row, num_col));
+    }
+  }
+  return Matrix_return;
+}
+
+template <class T>
+MyMatrix3<T> & MyMatrix3<T>::operator*(MyMatrix3<T> & Matrix)
+{
+  /* raise error if the sizes of the two matrices not match.
+    */
+  if (this->num_cols != Matrix.getNumRows())
+  {
+    std::cout << "ERROR: COLUMN NUMBER OF THE FIRST MATRIX SHOULD MATCH THE ROW NUMBER OF THE SECOND MATRIX!" << std::endl;
+    exit(-2);
+  }
+
+  /* solve the return problem for classes using pointers, but not delicate enough.
+     according to the compiler, for each `Matrix_return` variable with different `num_rows` or `num_cols`, it will generate a new object.
+    */
+  static MyMatrix3<T> Matrix_return(this->num_rows, Matrix.getNumCols());
+  Matrix_return.setZeros();
+  for (size_t num_row = 0; num_row < this->num_rows; num_row ++)
+  {
+    for (size_t num_col = 0; num_col < Matrix.getNumCols(); num_col ++)
+    {
+      T sum = 0;
+      for (size_t iter = 0; iter < this->num_cols; iter ++)
+      {
+        sum = sum + this->getValue(num_row, iter) * Matrix.getValue(iter, num_col);
+      }
+      Matrix_return.setValue(num_row, num_col, sum);
     }
   }
   return Matrix_return;
@@ -156,7 +195,7 @@ void MyMatrix3<T>::printMatrix()
     }
     std::cout << std::endl;
   }
-  std::cout << "Printed Matrix." <<std::endl;
+  std::cout << "Printed Matrix." << std::endl;
 };
 
 /*

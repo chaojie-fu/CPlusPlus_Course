@@ -37,10 +37,39 @@ int main()
   MyMatrix3<int> Matrix_sum_construct(Matrix_copy + Matrix_exp);
   MyMatrix3<int> Matrix_sum_assign(num_row, num_col);
   Matrix_sum_assign = Matrix_copy + Matrix_exp;
-  // Matrix_sum = Matrix_exp + Matrix_copy;
   std::cout << "Matrix_sum_construct = " << std::endl;
   Matrix_sum_construct.printMatrix();
   std::cout << "Matrix_sum_assign = " << std::endl;
   Matrix_sum_assign.printMatrix();
+
+
+  std::cout << "========================================" << std::endl;
+  /* test multiple operator (*)
+    */
+  std::cout << "Test Multiple Operator" << std::endl;
+  MyMatrix3<int> A(3, 2);
+  for (size_t num_row = 0; num_row < 3; num_row ++)
+  {
+    for (size_t num_col = 0; num_col < 2; num_col ++)
+    {
+      A.setValue(num_row, num_col, 1);
+    }
+  }
+  MyMatrix3<int> B(2, 4);
+  for (size_t num_row = 0; num_row < 2; num_row ++)
+  {
+    for (size_t num_col = 0; num_col < 4; num_col ++)
+    {
+      B.setValue(num_row, num_col, num_row * 2 + num_col * 3);
+    }
+  }
+  std::cout << "A = " << std::endl;
+  A.printMatrix();
+  std::cout << "B = " << std::endl;
+  B.printMatrix();
+  std::cout << "A * B = " << std::endl;
+  MyMatrix3<int> C(3, 4);
+  C = A * B;
+  C.printMatrix();
   return 0;
 }

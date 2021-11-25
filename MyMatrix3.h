@@ -16,6 +16,7 @@ class MyMatrix3
       */
     MyMatrix3& operator=(MyMatrix3 & Matrix);
     MyMatrix3& operator+(MyMatrix3 & Matrix);
+    MyMatrix3& operator*(MyMatrix3 & Matrix);
 
     size_t getNumCols();
     size_t getNumRows();
@@ -23,5 +24,4 @@ class MyMatrix3
     T getValue(size_t row, size_t col);
     void setValue(size_t row, size_t col, T new_value);
     void printMatrix();
-
 };
