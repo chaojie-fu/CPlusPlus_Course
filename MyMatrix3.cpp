@@ -6,7 +6,6 @@
 template <class T> 
 MyMatrix3<T>::MyMatrix3()
 {
-  std::cout << "Constructor" << std::endl;
   num_cols = 3;
   num_rows = 3;
   matrix = new T*[num_cols];
@@ -20,7 +19,6 @@ MyMatrix3<T>::MyMatrix3()
 template <class T> 
 MyMatrix3<T>::MyMatrix3(size_t f_num_rows, size_t f_num_cols)
 {
-  std::cout << "Constructor" << std::endl;
   num_cols = f_num_cols;
   num_rows = f_num_rows;
   matrix = new T*[num_cols];
@@ -34,7 +32,6 @@ MyMatrix3<T>::MyMatrix3(size_t f_num_rows, size_t f_num_cols)
 template <class T>
 MyMatrix3<T>::MyMatrix3(MyMatrix3 & oldMatrix)
 {
-  std::cout << "Constructor" << std::endl;
   num_cols = oldMatrix.getNumCols();
   num_rows = oldMatrix.getNumRows();
 
@@ -58,13 +55,58 @@ MyMatrix3<T>::MyMatrix3(MyMatrix3 & oldMatrix)
 template <class T> 
 MyMatrix3<T>::~MyMatrix3(void)
 {
-  std::cout << "Deconstructor" << std::endl;
   for (size_t num_col = 0; num_col < num_cols; num_col++)
   {
     delete[] matrix[num_col];
   }
   delete[] matrix;
 };
+
+template <class T>
+MyMatrix3<T> & MyMatrix3<T>::operator=(MyMatrix3<T> & Matrix)
+{
+  this->num_cols = Matrix.getNumCols();
+  this->num_rows = Matrix.getNumRows();
+  this->matrix = new T*[this->num_cols];
+  for (size_t num_col= 0; num_col < this->num_cols; num_col ++)
+  {
+    this->matrix[num_col] = new T[num_rows];
+  }
+
+  for (size_t num_col = 0; num_col < this->num_cols; num_col ++)
+  {
+    for (size_t num_row = 0; num_row< this->num_rows; num_row ++)
+    {
+      this->matrix[num_col][num_row] = Matrix.getValue(num_row, num_col);
+    }
+  }
+  return *this;
+};
+
+template <class T>
+MyMatrix3<T> & MyMatrix3<T>::operator+(MyMatrix3<T> & Matrix)
+{
+  /* raise error if the sizes of the two matrices not match.
+    */
+  if ((this->num_cols != Matrix.getNumCols()) || (this->num_rows != Matrix.getNumRows()))
+  {
+    std::cout << "ERROR: SIZE OF THE TWO MATRICES NOT MATCH!" std::endl;
+    exit(-1);
+  }
+
+  /* solve the return problem for classes using pointers, but not delicate enough.
+    */
+  static MyMatrix3<T> Matrix_return(this->getNumRows(), this->getNumCols());
+  Matrix_return.setZeros();
+  for (size_t num_col = 0; num_col < this->num_cols; num_col ++)
+  {
+    for (size_t num_row = 0; num_row< this->num_rows; num_row ++)
+    {
+      Matrix_return.setValue(num_row, num_col, this->getValue(num_row, num_col) + Matrix.getValue(num_row, num_col));
+    }
+  }
+  return Matrix_return;
+}
 
 template <class T> 
 size_t MyMatrix3<T>::getNumCols()
@@ -116,43 +158,6 @@ void MyMatrix3<T>::printMatrix()
   }
   std::cout << "Printed Matrix." <<std::endl;
 };
-
-template <class T>
-MyMatrix3<T> & MyMatrix3<T>::operator=(MyMatrix3<T> & Matrix)
-{
-  this -> num_cols = Matrix.getNumCols();
-  this -> num_rows = Matrix.getNumRows();
-  this -> matrix = new T*[this -> num_cols];
-  for (size_t num_col= 0; num_col < this -> num_cols; num_col ++)
-  {
-    this -> matrix[num_col] = new T[num_rows];
-  }
-
-  for (size_t num_col = 0; num_col < this -> num_cols; num_col ++)
-  {
-    for (size_t num_row = 0; num_row< this -> num_rows; num_row ++)
-    {
-      this -> matrix[num_col][num_row] = Matrix.getValue(num_row, num_col);
-    }
-  }
-  return *this;
-};
-
-template <class T>
-MyMatrix3<T> & MyMatrix3<T>::operator+(MyMatrix3<T> & Matrix)
-{
-  /* solve the return problem for classes with pointers, but not delicate enough.
-    */
-  static MyMatrix3<T> Matrix_return(this -> getNumRows(), this -> getNumCols());
-  for (size_t num_col = 0; num_col < this -> num_cols; num_col ++)
-  {
-    for (size_t num_row = 0; num_row< this -> num_rows; num_row ++)
-    {
-      Matrix_return.setValue(num_row, num_col, this -> getValue(num_row, num_col) + Matrix.getValue(num_row, num_col));
-    }
-  }
-  return Matrix_return;
-}
 
 /*
   Add the following lines to avoid 'underfined references'
