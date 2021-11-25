@@ -7,8 +7,11 @@ int main()
   size_t num_col = 5;
   MyMatrix3<int> Matrix_exp(num_row, num_col);
   Matrix_exp.setValue(2, 1, 10.0);
+
+  std::cout << "========================================" << std::endl;
   std::cout << "Matrix_exp = " << std::endl;
   Matrix_exp.printMatrix();
+  std::cout << "========================================" << std::endl;
 
   std::cout << "========================================" << std::endl;
   /* test copy constructor
@@ -17,6 +20,7 @@ int main()
   MyMatrix3<int> Matrix_copy = Matrix_exp;
   std::cout << "Matrix_copy = " << std::endl;
   Matrix_copy.printMatrix();
+  std::cout << "========================================" << std::endl;
 
   std::cout << "========================================" << std::endl;
   /* test assignment operator (=)
@@ -29,6 +33,7 @@ int main()
   Matrix_exp.printMatrix();
   std::cout << "Matrix_copy = " << std::endl;
   Matrix_copy.printMatrix();
+  std::cout << "========================================" << std::endl;
 
   std::cout << "========================================" << std::endl;
   /* test add operator (+)
@@ -41,7 +46,7 @@ int main()
   Matrix_sum_construct.printMatrix();
   std::cout << "Matrix_sum_assign = " << std::endl;
   Matrix_sum_assign.printMatrix();
-
+  std::cout << "========================================" << std::endl;
 
   std::cout << "========================================" << std::endl;
   /* test multiple operator (*)
@@ -71,5 +76,15 @@ int main()
   MyMatrix3<int> C(3, 4);
   C = A * B;
   C.printMatrix();
+  std::cout << "========================================" << std::endl;
+
+  std::cout << "========================================" << std::endl;
+  /* test index operator (*)
+    */
+  std::cout << "Test Index Operator" << std::endl;
+  std::cout << "The (3, 2) element of Matrix_sum_construct is: " << Matrix_sum_construct(2, 1) << std::endl;
+  std::cout << "The (1, 2) element of B is: " << B(0, 1) << std::endl;
+  std::cout << "========================================" << std::endl;
+
   return 0;
 }

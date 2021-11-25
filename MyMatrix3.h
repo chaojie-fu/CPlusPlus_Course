@@ -17,6 +17,7 @@ class MyMatrix3
     MyMatrix3& operator=(MyMatrix3 & Matrix);
     MyMatrix3& operator+(MyMatrix3 & Matrix);
     MyMatrix3& operator*(MyMatrix3 & Matrix);
+    T operator()(size_t row, size_t col);
 
     size_t getNumCols();
     size_t getNumRows();

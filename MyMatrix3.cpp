@@ -147,6 +147,12 @@ MyMatrix3<T> & MyMatrix3<T>::operator*(MyMatrix3<T> & Matrix)
   return Matrix_return;
 }
 
+template <class T>
+T MyMatrix3<T>::operator()(size_t row, size_t col)
+{
+  return this->getValue(row, col);
+}
+
 template <class T> 
 size_t MyMatrix3<T>::getNumCols()
 {
@@ -186,16 +192,17 @@ void MyMatrix3<T>::setValue(size_t row, size_t col, T new_value)
 template <class T>
 void MyMatrix3<T>::printMatrix()
 {
-  std::cout << "Printing Matrix:" << std::endl;
+  std::cout << std::endl;
   for (size_t row = 0; row < num_rows; row ++)
   {
+    std::cout <<"\t";
     for (size_t col = 0; col < num_cols; col ++)
     {
       std::cout << matrix[col][row] << "\t";
     }
     std::cout << std::endl;
   }
-  std::cout << "Printed Matrix." << std::endl;
+  std::cout << std::endl;
 };
 
 /*
