@@ -1,3 +1,9 @@
+/*
+  Some references of this file:
+  - most useful for the question `return a pointer from function`: https://stackoverflow.com/questions/12992925/c-correct-way-to-return-pointer-to-array-from-function
+  - about the lvalue_reference and rvalue rvalue_reference: https://www.geeksforgeeks.org/lvalues-references-and-rvalues-references-in-c-with-examples/
+  - example of the use of move constructor in matrix class: https://hypercube.top/posts/2017/12/30/double-arr.html
+  */
 # include "MyMatrix3.h"
 
 /*
@@ -16,9 +22,15 @@ MyMatrix3<T>::MyMatrix3()
   setZeros();
 };
 
+/* 
+  Basic Constructor
+  */
 template <class T> 
 MyMatrix3<T>::MyMatrix3(size_t f_num_rows, size_t f_num_cols)
 {
+  #ifdef DEBUG
+    std::cout << "Basic Constructor" << std::endl;
+  #endif
   num_cols = f_num_cols;
   num_rows = f_num_rows;
   matrix = new T*[num_cols];
@@ -29,9 +41,15 @@ MyMatrix3<T>::MyMatrix3(size_t f_num_rows, size_t f_num_cols)
   setZeros();
 };
 
+/* 
+  Copy Constructor
+  */
 template <class T>
 MyMatrix3<T>::MyMatrix3(MyMatrix3 & oldMatrix)
 {
+  #ifdef DEBUG
+    std::cout << "Copy Constructor" << std::endl;
+  #endif
   num_cols = oldMatrix.getNumCols();
   num_rows = oldMatrix.getNumRows();
 
@@ -52,9 +70,44 @@ MyMatrix3<T>::MyMatrix3(MyMatrix3 & oldMatrix)
   }
 }
 
+/*
+  Move Constructor
+  */
+template <class T>
+MyMatrix3<T>::MyMatrix3(MyMatrix3 && oldMatrix)
+{
+  #ifdef DEBUG
+    std::cout << "Move Constructor" << std::endl;
+  #endif
+  num_cols = oldMatrix.getNumCols();
+  num_rows = oldMatrix.getNumRows();
+
+  matrix = new T*[num_cols];
+  for (size_t num_col= 0; num_col < num_cols; num_col++)
+  {
+    matrix[num_col] = new T[num_rows];
+  }
+
+  /* deep-copy value of the old matrix
+    */
+  for (size_t num_col = 0; num_col < num_cols; num_col ++)
+  {
+    for (size_t num_row = 0; num_row < num_rows; num_row ++)
+    {
+      matrix[num_col][num_row] = oldMatrix.getValue(num_row, num_col);
+    }
+  }
+}
+
+/*
+  Deconstructor
+  */
 template <class T> 
 MyMatrix3<T>::~MyMatrix3(void)
 {
+  #ifdef DEBUG
+    std::cout << "Deconstructor" << std::endl;
+  #endif
   for (size_t num_col = 0; num_col < num_cols; num_col++)
   {
     delete[] matrix[num_col];
@@ -62,9 +115,50 @@ MyMatrix3<T>::~MyMatrix3(void)
   delete[] matrix;
 };
 
+/* 
+  Copy assignment
+  */
 template <class T>
-MyMatrix3<T> & MyMatrix3<T>::operator=(MyMatrix3<T> & Matrix)
+MyMatrix3<T> MyMatrix3<T>::operator=(MyMatrix3<T> & Matrix)
 {
+  #ifdef DEBUG
+    std::cout << "Copy Assignment" << std::endl;
+  #endif
+  /* raise error if the sizes of the two matrices not match.
+    */
+  if ((this->num_cols != Matrix.getNumCols()) || (this->num_rows != Matrix.getNumRows()))
+  {
+    std::cout << "ERROR: SIZE OF THE TWO MATRICES NOT MATCH!" << std::endl;
+    exit(-1);
+  }
+
+  this->num_cols = Matrix.getNumCols();
+  this->num_rows = Matrix.getNumRows();
+  this->matrix = new T*[this->num_cols];
+  for (size_t num_col= 0; num_col < this->num_cols; num_col ++)
+  {
+    this->matrix[num_col] = new T[num_rows];
+  }
+
+  for (size_t num_col = 0; num_col < this->num_cols; num_col ++)
+  {
+    for (size_t num_row = 0; num_row< this->num_rows; num_row ++)
+    {
+      this->matrix[num_col][num_row] = Matrix.getValue(num_row, num_col);
+    }
+  }
+  return *this;
+};
+
+/*
+  Move assignment
+  */
+template <class T>
+MyMatrix3<T> MyMatrix3<T>::operator=(MyMatrix3<T> && Matrix)
+{
+  #ifdef DEBUG
+    std::cout << "Move Assignment" << std::endl;
+  #endif
   /* raise error if the sizes of the two matrices not match.
     */
   if ((this->num_cols != Matrix.getNumCols()) || (this->num_rows != Matrix.getNumRows()))
@@ -92,7 +186,7 @@ MyMatrix3<T> & MyMatrix3<T>::operator=(MyMatrix3<T> & Matrix)
 };
 
 template <class T>
-MyMatrix3<T> & MyMatrix3<T>::operator+(MyMatrix3<T> & Matrix)
+MyMatrix3<T> MyMatrix3<T>::operator+(MyMatrix3<T> & Matrix)
 {
   /* raise error if the sizes of the two matrices not match.
     */
@@ -102,9 +196,7 @@ MyMatrix3<T> & MyMatrix3<T>::operator+(MyMatrix3<T> & Matrix)
     exit(-1);
   }
 
-  /* solve the return problem for classes using pointers, but not delicate enough.
-    */
-  static MyMatrix3<T> Matrix_return(this->getNumRows(), this->getNumCols());
+  MyMatrix3<T> Matrix_return(this->getNumRows(), this->getNumCols());
   Matrix_return.setZeros();
   for (size_t num_col = 0; num_col < this->num_cols; num_col ++)
   {
@@ -117,7 +209,7 @@ MyMatrix3<T> & MyMatrix3<T>::operator+(MyMatrix3<T> & Matrix)
 }
 
 template <class T>
-MyMatrix3<T> & MyMatrix3<T>::operator*(MyMatrix3<T> & Matrix)
+MyMatrix3<T> MyMatrix3<T>::operator*(MyMatrix3<T> & Matrix)
 {
   /* raise error if the sizes of the two matrices not match.
     */
@@ -127,10 +219,7 @@ MyMatrix3<T> & MyMatrix3<T>::operator*(MyMatrix3<T> & Matrix)
     exit(-2);
   }
 
-  /* solve the return problem for classes using pointers, but not delicate enough.
-     according to the compiler, for each `Matrix_return` variable with different `num_rows` or `num_cols`, it will generate a new object.
-    */
-  static MyMatrix3<T> Matrix_return(this->num_rows, Matrix.getNumCols());
+  MyMatrix3<T> Matrix_return(this->num_rows, Matrix.getNumCols());
   Matrix_return.setZeros();
   for (size_t num_row = 0; num_row < this->num_rows; num_row ++)
   {

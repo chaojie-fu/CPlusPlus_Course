@@ -10,13 +10,15 @@ class MyMatrix3
     MyMatrix3();
     MyMatrix3(size_t f_num_rows, size_t f_num_cols);
     MyMatrix3(MyMatrix3 & oldMatrix);
+    MyMatrix3(MyMatrix3 && oldMatrix);
     ~MyMatrix3();
 
     /* overload operators
       */
-    MyMatrix3& operator=(MyMatrix3 & Matrix);
-    MyMatrix3& operator+(MyMatrix3 & Matrix);
-    MyMatrix3& operator*(MyMatrix3 & Matrix);
+    MyMatrix3 operator=(MyMatrix3 & Matrix);
+    MyMatrix3 operator=(MyMatrix3 && Matrix);
+    MyMatrix3 operator+(MyMatrix3 & Matrix);
+    MyMatrix3 operator*(MyMatrix3 & Matrix);
     T operator()(size_t row, size_t col);
 
     size_t getNumCols();
