@@ -299,5 +299,9 @@ void MyMatrix3<T>::printMatrix()
   Meanwhile, this can restrict the template class type to specific types
   */
 template class MyMatrix3<int>;
+template class MyMatrix3<long int>;
+template class MyMatrix3<short int>;
+template class MyMatrix3<long long int>;
 template class MyMatrix3<float>;
 template class MyMatrix3<double>;
+template class MyMatrix3<long double>;
