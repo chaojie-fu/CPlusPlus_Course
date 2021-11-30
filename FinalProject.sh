@@ -1,0 +1,1 @@
+g++ ./Test_MemberTypes.cpp ./MemberTypes.cpp ./MemberTypes.h -o Test_MemberTypes

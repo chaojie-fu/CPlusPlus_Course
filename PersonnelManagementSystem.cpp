@@ -1,4 +1,13 @@
 #include "PersonnelManagementSystem.h"
+
+bool PersonnelManagementSystem::IsEmpty()
+{
+}
+
+size_t PersonnelManagementSystem::NumOfMembers()
+{
+}
+
 void PersonnelManagementSystem::InsertMemberAtEnd(union Member &m_Member)
 {
 }

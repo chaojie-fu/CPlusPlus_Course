@@ -6,8 +6,14 @@
 class PersonnelManagementSystem
 {
     private:
-        std::list<union Member> MemberList;
+        std::list<UndergraduateStudent> UndergraduateStudent_List;
+        std::list<FullTimePostgraduate> FullTimePostgraduate_List;
+        std::list<OnJobPostgraduate> OnJobPostgraduate_List;
+        std::list<Staff> Staff_List;
+        std::list<Teacher> Teacher_List;
     public:
+        bool IsEmpty();
+        size_t NumOfMembers();
         void InsertMemberAtEnd(union Member & m_Member);
         void InsertMemberAtFront(union Member & m_Member);
 

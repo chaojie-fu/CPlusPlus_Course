@@ -3,21 +3,16 @@
 
 typedef std::string Name;
 typedef unsigned int Age;
-typedef long int IDNumber;
+typedef std::string IDNumber;
 typedef int Score;
 typedef std::string Major;
-typedef long int StudentNumber;
+typedef std::string StudentNumber;
 typedef double Salary;
 typedef std::string Job;
 
-union Member
-{
-    UndergraduateStudent m_UndergraduateStudent;
-    FullTimePostgraduate m_FullTimePostgraduate;
-    OnJobPostgraduate m_OnJobPostgraduate;
-    Staff m_Staff;
-    Teacher m_Teacher;
-};
+/* 
+    Classes: UndergraduateStudent, FullTimePostgraduate, OnJobPostgraduate, Staff, Teacher
+    */
 
 enum Gender
 {
@@ -43,7 +38,6 @@ class MemberBase
         IDNumber idNumber;
     public:
         MemberBase(Name m_name, Gender m_gender, Age m_age, IDNumber m_idnumber);
-        ~MemberBase() = default;
 
         void setName(Name newName);
         void setGender(Gender Gender);
@@ -65,7 +59,6 @@ class UndergraduateStudent: public MemberBase
         Score score;
     public:
         UndergraduateStudent(Name m_name, Gender m_gender, Age m_age, IDNumber m_idnumber, Score m_score);
-        ~UndergraduateStudent() = default;
         
         void setScore(Score newScore);
 
@@ -82,7 +75,6 @@ class FullTimePostgraduate: public MemberBase
         Major major;
     public:
         FullTimePostgraduate(Name m_name, Gender m_gender, Age m_age, IDNumber m_idnumber, Major m_major);
-        ~FullTimePostgraduate() = default;
     
         void setMajor(Major newMajor);
 
@@ -102,7 +94,6 @@ class OnJobPostgraduate: public MemberBase
         Salary salary;
     public:
         OnJobPostgraduate(Name m_name, Gender m_gender, Age m_age, IDNumber m_idnumber, StudentNumber m_studentnumber, Major m_major, Salary m_salary);
-        ~OnJobPostgraduate() = default;
 
         void setMajor(Major newMajor);
         void setStudentNumber(StudentNumber newStudentNumber);
@@ -124,7 +115,6 @@ class Staff: public MemberBase
         Job job;
     public:
         Staff(Name m_name, Gender m_gender, Age m_age, IDNumber m_idnumber, Salary m_salary, Job m_job);
-        ~Staff() = default;
         
         void setSalary(Salary newSalary);
         void setJob(Job newJob);
@@ -144,7 +134,6 @@ class Teacher: public MemberBase
         Major major;
     public:
         Teacher(Name m_name, Gender m_gender, Age m_age, IDNumber m_idnumber, Salary m_salary, Major m_major);
-        ~Teacher() = default;
         
         void setSalary(Salary newSalary);
         void setMajor(Job newJob);
