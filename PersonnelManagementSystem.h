@@ -33,9 +33,6 @@ class PersonnelManagementSystem
 
         void DeleteMemberByIDNumber(IDNumber idnumber); 
 
-        void LookupByIDNumber(IDNumber idnumber);
-
-        void PrintMemberInfoByName(Name name);
         void PrintMemberInfoByIDNumber(IDNumber idnumber);
 
         void PrintAllInfos();
