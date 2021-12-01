@@ -33,7 +33,7 @@ class PersonnelManagementSystem
 
         void DeleteMemberByIDNumber(IDNumber idnumber); 
 
-        void PrintMemberInfoByIDNumber(IDNumber idnumber);
+        void LookupMemberByIDNumber(IDNumber idnumber);
 
         void PrintAllInfos();
 };

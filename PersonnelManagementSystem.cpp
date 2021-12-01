@@ -393,10 +393,10 @@ void PersonnelManagementSystem::DeleteMemberByIDNumber(IDNumber idnumber)
     {
         if (UndergraduateStudent_Iter->getIDNumber() == idnumber)
         {
-            std::cout << "The Member with ID Number " << idnumber << " is to be deleted from database. Member information : " << std::endl;
+            std::cout << "The member with ID Number " << idnumber << " is to be deleted from database. Member information : " << std::endl;
             UndergraduateStudent_Iter->printInfo();
             UndergraduateStudent_List.erase(UndergraduateStudent_Iter);
-            std::cout << "The Member is deleted from database." << std::endl;
+            std::cout << "The member is deleted from database." << std::endl;
             return;
         }
     }
@@ -406,10 +406,10 @@ void PersonnelManagementSystem::DeleteMemberByIDNumber(IDNumber idnumber)
     {
         if (FullTimePostgraduate_Iter->getIDNumber() == idnumber)
         {
-            std::cout << "The Member with ID Number " << idnumber << " is to be deleted from database. Member information : " << std::endl;
+            std::cout << "The member with ID Number " << idnumber << " is to be deleted from database. Member information : " << std::endl;
             FullTimePostgraduate_Iter->printInfo();
             FullTimePostgraduate_List.erase(FullTimePostgraduate_Iter);
-            std::cout << "The Member is deleted from database." << std::endl;
+            std::cout << "The member is deleted from database." << std::endl;
             return;
         }
     }
@@ -419,10 +419,10 @@ void PersonnelManagementSystem::DeleteMemberByIDNumber(IDNumber idnumber)
     {
         if (OnJobPostgraduate_Iter->getIDNumber() == idnumber)
         {
-            std::cout << "The Member with ID Number " << idnumber << " is to be deleted from database. Member information : " << std::endl;
+            std::cout << "The member with ID Number " << idnumber << " is to be deleted from database. Member information : " << std::endl;
             OnJobPostgraduate_Iter->printInfo();
             OnJobPostgraduate_List.erase(OnJobPostgraduate_Iter);
-            std::cout << "The Member is deleted from database." << std::endl;
+            std::cout << "The member is deleted from database." << std::endl;
             return;
         }
     }
@@ -432,10 +432,10 @@ void PersonnelManagementSystem::DeleteMemberByIDNumber(IDNumber idnumber)
     {
         if (Staff_Iter->getIDNumber() == idnumber)
         {
-            std::cout << "The Member with ID Number " << idnumber << " is to be deleted from database. Member information : " << std::endl;
+            std::cout << "The member with ID Number " << idnumber << " is to be deleted from database. Member information : " << std::endl;
             Staff_Iter->printInfo();
             Staff_List.erase(Staff_Iter);
-            std::cout << "The Member is deleted from database." << std::endl;
+            std::cout << "The member is deleted from database." << std::endl;
             return;
         }
     }
@@ -445,23 +445,23 @@ void PersonnelManagementSystem::DeleteMemberByIDNumber(IDNumber idnumber)
     {
         if (Teacher_Iter->getIDNumber() == idnumber)
         {
-            std::cout << "The Member with ID Number " << idnumber << " is to be deleted from database. Member information : " << std::endl;
+            std::cout << "The member with ID Number " << idnumber << " is to be deleted from database. Member information : " << std::endl;
             Teacher_Iter->printInfo();
             Teacher_List.erase(Teacher_Iter);
-            std::cout << "The Member is deleted from database." << std::endl;
+            std::cout << "The member is deleted from database." << std::endl;
             return;
         }
     }
 }
 
-void PersonnelManagementSystem::PrintMemberInfoByIDNumber(IDNumber idnumber)
+void PersonnelManagementSystem::LookupMemberByIDNumber(IDNumber idnumber)
 {
     std::list<UndergraduateStudent>::iterator UndergraduateStudent_Iter = UndergraduateStudent_List.begin();
     for (; UndergraduateStudent_Iter != UndergraduateStudent_List.end(); UndergraduateStudent_Iter++)
     {
         if (UndergraduateStudent_Iter->getIDNumber() == idnumber)
         {
-            std::cout << "The Member with ID Number " << idnumber << ":" << std::endl;
+            std::cout << "The member with ID Number " << idnumber << ":" << std::endl;
             UndergraduateStudent_Iter->printInfo();
             return;
         }
@@ -472,7 +472,7 @@ void PersonnelManagementSystem::PrintMemberInfoByIDNumber(IDNumber idnumber)
     {
         if (FullTimePostgraduate_Iter->getIDNumber() == idnumber)
         {
-            std::cout << "The Member with ID Number " << idnumber << ":" << std::endl;
+            std::cout << "The member with ID Number " << idnumber << ":" << std::endl;
             FullTimePostgraduate_Iter->printInfo();
             return;
         }
@@ -483,7 +483,7 @@ void PersonnelManagementSystem::PrintMemberInfoByIDNumber(IDNumber idnumber)
     {
         if (OnJobPostgraduate_Iter->getIDNumber() == idnumber)
         {
-            std::cout << "The Member with ID Number " << idnumber << ":" << std::endl;
+            std::cout << "The member with ID Number " << idnumber << ":" << std::endl;
             OnJobPostgraduate_Iter->printInfo();
             return;
         }
@@ -494,7 +494,7 @@ void PersonnelManagementSystem::PrintMemberInfoByIDNumber(IDNumber idnumber)
     {
         if (Staff_Iter->getIDNumber() == idnumber)
         {
-            std::cout << "The Member with ID Number " << idnumber << ":" << std::endl;
+            std::cout << "The member with ID Number " << idnumber << ":" << std::endl;
             Staff_Iter->printInfo();
             return;
         }
@@ -505,15 +505,17 @@ void PersonnelManagementSystem::PrintMemberInfoByIDNumber(IDNumber idnumber)
     {
         if (Teacher_Iter->getIDNumber() == idnumber)
         {
-            std::cout << "The Member with ID Number " << idnumber << ":" << std::endl;
+            std::cout << "The member with ID Number " << idnumber << ":" << std::endl;
             Teacher_Iter->printInfo();
             return;
         }
     }
+    std::cout << "Member with ID Number " << idnumber << " DO NOT exist." << std::endl;
 }
 
 void PersonnelManagementSystem::PrintAllInfos()
 {
+    std::cout << "" << std::endl;
     std::cout << "========================================" << std::endl;
     std::cout << "Printing all infomation..." << std::endl;
     std::list<UndergraduateStudent>::iterator UndergraduateStudent_Iter = UndergraduateStudent_List.begin();
@@ -545,6 +547,7 @@ void PersonnelManagementSystem::PrintAllInfos()
     {
         Teacher_Iter->printInfo();
     }
-    std::cout << "All information Printed." << std::endl;
+    std::cout << "All information of " << NumOfMembers() << " member(s) printed." << std::endl;
     std::cout << "========================================" << std::endl;
+    std::cout << "" << std::endl;
 }

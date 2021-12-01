@@ -77,7 +77,7 @@ void UndergraduateStudent::printInfo()
 
     std::cout << "Member Type:    \t" << "Undergraduate Student" << std::endl;
     std::cout << "Name:           \t" << name << std::endl;
-    std::cout << "Gender:         \t" << gender << std::endl;
+    std::cout << "Gender:         \t" << GenderToString[gender] << std::endl;
     std::cout << "Age:            \t" << age << std::endl;
     std::cout << "ID Number:      \t" << idNumber << std::endl;
 
@@ -116,7 +116,7 @@ void FullTimePostgraduate::printInfo()
 
     std::cout << "Member Type:    \t" << "Full-Time Postgraduate" << std::endl;
     std::cout << "Name:           \t" << name << std::endl;
-    std::cout << "Gender:         \t" << gender << std::endl;
+    std::cout << "Gender:         \t" << GenderToString[gender] << std::endl;
     std::cout << "Age:            \t" << age << std::endl;
     std::cout << "ID Number:      \t" << idNumber << std::endl;
 
@@ -173,7 +173,7 @@ void OnJobPostgraduate::printInfo()
 
     std::cout << "Member Type:    \t" << "On-Job Postgraduate" << std::endl;
     std::cout << "Name:           \t" << name << std::endl;
-    std::cout << "Gender:         \t" << gender << std::endl;
+    std::cout << "Gender:         \t" << GenderToString[gender] << std::endl;
     std::cout << "Age:            \t" << age << std::endl;
     std::cout << "ID Number:      \t" << idNumber << std::endl;
 
@@ -223,7 +223,7 @@ void Staff::printInfo()
 
     std::cout << "Member Type:    \t" << "Staff" << std::endl;
     std::cout << "Name:           \t" << name << std::endl;
-    std::cout << "Gender:         \t" << gender << std::endl;
+    std::cout << "Gender:         \t" << GenderToString[gender] << std::endl;
     std::cout << "Age:            \t" << age << std::endl;
     std::cout << "ID Number:      \t" << idNumber << std::endl;
 
@@ -270,9 +270,9 @@ void Teacher::printInfo()
 {
     std::cout << "========================================" << std::endl;
 
-    std::cout << "Member Type:    \t" << "Staff" << std::endl;
+    std::cout << "Member Type:    \t" << "Teacher" << std::endl;
     std::cout << "Name:           \t" << name << std::endl;
-    std::cout << "Gender:         \t" << gender << std::endl;
+    std::cout << "Gender:         \t" << GenderToString[gender] << std::endl;
     std::cout << "Age:            \t" << age << std::endl;
     std::cout << "ID Number:      \t" << idNumber << std::endl;
 

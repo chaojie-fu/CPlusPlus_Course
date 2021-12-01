@@ -1,5 +1,6 @@
 # include <iostream>
 # include <string>
+# include <map>
 
 typedef std::string Name;
 typedef unsigned int Age;
@@ -18,6 +19,12 @@ enum Gender
 {
     Female = 0, 
     Male = 1
+};
+
+static std::map<Gender, std::string> GenderToString = 
+{
+    {Female, "Female"},
+    {Male, "Male"}
 };
 
 enum MemberType
