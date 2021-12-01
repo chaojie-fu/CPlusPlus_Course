@@ -90,8 +90,10 @@ int main()
     */
   std::cout << "========================================" << std::endl;
   std::cout << "Test istream and ostream Operator" << std::endl;
+  std::cout << "C = " << std::endl;
   std::cout << C;
   std::cin >> C;
+  std::cout << "C = " << std::endl;
   std::cout << C;
   std::cout << "========================================" << std::endl;
 
