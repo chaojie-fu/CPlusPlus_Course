@@ -1,7 +1,5 @@
 # include "MemberTypes.h"
 # include <list>
-# include <string>
-# include <iostream>
 
 class PersonnelManagementSystem
 {
