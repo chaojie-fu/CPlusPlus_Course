@@ -20,6 +20,10 @@ class MyMatrix3
     MyMatrix3 operator+(MyMatrix3 & Matrix);
     MyMatrix3 operator*(MyMatrix3 & Matrix);
     T operator()(size_t row, size_t col);
+    template <class U>
+    friend std::istream & operator>>(std::istream & input, MyMatrix3<U> & Matrix);
+    template <class U>
+    friend std::ostream & operator<<(std::ostream & output, MyMatrix3<U> & Matrix);
 
     size_t getNumCols();
     size_t getNumRows();
@@ -27,4 +31,38 @@ class MyMatrix3
     T getValue(size_t row, size_t col);
     void setValue(size_t row, size_t col, T new_value);
     void printMatrix();
+};
+
+template <class U>
+std::istream & operator>>(std::istream & input, MyMatrix3<U> & Matrix)
+{
+  std::cout << "Input data as commanded. The matrix size is " << Matrix.getNumRows() << " * " << Matrix.getNumCols() << std::endl;
+  for (size_t row = 0; row < Matrix.getNumRows(); row ++)
+  {
+    for (size_t col = 0; col < Matrix.getNumCols(); col ++)
+    {
+      U input_var;
+      std::cout << "Element(" << row + 1 << ", " << col + 1 << "): ";
+      input >> input_var;
+      Matrix.setValue(row, col, input_var);
+    }
+  }
+  return input;
+};
+
+template <class U>
+std::ostream & operator<<(std::ostream & output, MyMatrix3<U> & Matrix)
+{
+  output << std::endl;
+  for (size_t row = 0; row < Matrix.getNumRows(); row ++)
+  {
+    for (size_t col = 0; col < Matrix.getNumCols(); col ++)
+    {
+      output.width(8);
+      output << Matrix.getValue(row, col) << "\t";      
+    }
+    output << std::endl;
+  }
+  output << std::endl;
+  return output;
 };

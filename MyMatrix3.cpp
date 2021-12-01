@@ -284,9 +284,9 @@ void MyMatrix3<T>::printMatrix()
   std::cout << std::endl;
   for (size_t row = 0; row < num_rows; row ++)
   {
-    std::cout <<"\t";
     for (size_t col = 0; col < num_cols; col ++)
     {
+      std::cout.width(8);
       std::cout << matrix[col][row] << "\t";
     }
     std::cout << std::endl;

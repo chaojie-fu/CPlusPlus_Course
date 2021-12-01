@@ -13,18 +13,18 @@ int main()
   Matrix_exp.printMatrix();
   std::cout << "========================================" << std::endl;
 
-  std::cout << "========================================" << std::endl;
   /* test copy constructor
     */
+  std::cout << "========================================" << std::endl;
   std::cout << "Test Copy Constructor" << std::endl;
   MyMatrix3<int> Matrix_copy = Matrix_exp;
   std::cout << "Matrix_copy = " << std::endl;
   Matrix_copy.printMatrix();
   std::cout << "========================================" << std::endl;
 
-  std::cout << "========================================" << std::endl;
   /* test assignment operator (=)
     */
+  std::cout << "========================================" << std::endl;
   std::cout << "Test Assignment Operator" << std::endl;
   Matrix_exp.setValue(3, 4, 7);
   Matrix_copy = Matrix_exp;
@@ -35,9 +35,9 @@ int main()
   Matrix_copy.printMatrix();
   std::cout << "========================================" << std::endl;
 
-  std::cout << "========================================" << std::endl;
   /* test add operator (+)
     */
+  std::cout << "========================================" << std::endl;
   std::cout << "Test Add Operator" << std::endl;
   MyMatrix3<int> Matrix_sum_construct(Matrix_copy + Matrix_exp);
   MyMatrix3<int> Matrix_sum_assign(num_row, num_col);
@@ -48,9 +48,9 @@ int main()
   Matrix_sum_assign.printMatrix();
   std::cout << "========================================" << std::endl;
 
-  std::cout << "========================================" << std::endl;
   /* test multiple operator (*)
     */
+  std::cout << "========================================" << std::endl;
   std::cout << "Test Multiple Operator" << std::endl;
   MyMatrix3<int> A(3, 2);
   for (size_t num_row = 0; num_row < 3; num_row ++)
@@ -78,12 +78,21 @@ int main()
   C.printMatrix();
   std::cout << "========================================" << std::endl;
 
-  std::cout << "========================================" << std::endl;
   /* test index operator (*)
     */
+  std::cout << "========================================" << std::endl;
   std::cout << "Test Index Operator" << std::endl;
   std::cout << "The (3, 2) element of Matrix_sum_construct is: " << Matrix_sum_construct(2, 1) << std::endl;
   std::cout << "The (1, 2) element of B is: " << B(0, 1) << std::endl;
+  std::cout << "========================================" << std::endl;
+
+  /* test iostream operator (*)
+    */
+  std::cout << "========================================" << std::endl;
+  std::cout << "Test istream and ostream Operator" << std::endl;
+  std::cout << C;
+  std::cin >> C;
+  std::cout << C;
   std::cout << "========================================" << std::endl;
 
   return 0;
