@@ -128,8 +128,7 @@ MyMatrix3<T> MyMatrix3<T>::operator=(MyMatrix3<T> & Matrix)
     */
   if ((this->num_cols != Matrix.getNumCols()) || (this->num_rows != Matrix.getNumRows()))
   {
-    std::cout << "ERROR: SIZE OF THE TWO MATRICES NOT MATCH!" << std::endl;
-    exit(-1);
+    throw std::domain_error("ERROR: Sizes of the two matrices not match!");
   }
 
   this->num_cols = Matrix.getNumCols();
@@ -163,8 +162,7 @@ MyMatrix3<T> MyMatrix3<T>::operator=(MyMatrix3<T> && Matrix)
     */
   if ((this->num_cols != Matrix.getNumCols()) || (this->num_rows != Matrix.getNumRows()))
   {
-    std::cout << "ERROR: SIZE OF THE TWO MATRICES NOT MATCH!" << std::endl;
-    exit(-1);
+    throw std::domain_error("ERROR: Sizes of the two matrices not match!");
   }
 
   this->num_cols = Matrix.getNumCols();
@@ -192,8 +190,7 @@ MyMatrix3<T> MyMatrix3<T>::operator+(MyMatrix3<T> & Matrix)
     */
   if ((this->num_cols != Matrix.getNumCols()) || (this->num_rows != Matrix.getNumRows()))
   {
-    std::cout << "ERROR: SIZE OF THE TWO MATRICES NOT MATCH!" << std::endl;
-    exit(-1);
+    throw std::domain_error("ERROR: Sizes of the two matrices not match!");
   }
 
   MyMatrix3<T> Matrix_return(this->getNumRows(), this->getNumCols());
@@ -215,8 +212,7 @@ MyMatrix3<T> MyMatrix3<T>::operator*(MyMatrix3<T> & Matrix)
     */
   if (this->num_cols != Matrix.getNumRows())
   {
-    std::cout << "ERROR: COLUMN NUMBER OF THE FIRST MATRIX SHOULD MATCH THE ROW NUMBER OF THE SECOND MATRIX!" << std::endl;
-    exit(-2);
+    throw std::domain_error("ERROR: Column number of the first matrix do not match the row number of the second matrix!");
   }
 
   MyMatrix3<T> Matrix_return(this->num_rows, Matrix.getNumCols());
