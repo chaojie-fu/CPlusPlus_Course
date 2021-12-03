@@ -22,16 +22,26 @@ int main()
     Matrix03.setValue(4, 2, 1.0);
     Matrix03.setValue(2, 2, 1.0);
 
+    /* 
+        test file IO functions
+        */
+    std::cout << "========================================" << std::endl;
+    std::cout << "Test file IO functions, Matrix04 is generated from file." << std::endl;
     Serialization<int> Serializer;
-    try
-    {
-        std::string file_name = "output.csv";
-        Serializer.serialize(Matrix03, file_name);
-    }
-    catch (std::exception &e)
-    {
-        std::cout << e.what() << std::endl;
-    }
+    std::string file_name = "./output.csv";
+    Serializer.serialize(Matrix03, file_name);
+
+    MyMatrix4<int> Matrix04 = Serializer.deserialize(file_name);
+    std::cout << "Matrix04 = " << std::endl;
+    Matrix04.printMatrix();
+    std::cout << "========================================" << std::endl;
+
+
+    /*
+        test Exception handling
+        */
+    std::cout << "========================================" << std::endl;
+    std::cout << "Test matrix assignment with different shape." << std::endl;
     try
     {
         Matrix01 = Matrix03;
@@ -41,6 +51,8 @@ int main()
         std::cout << e.what() << std::endl;
     }
 
+    std::cout << "========================================" << std::endl;
+    std::cout << "Test matrix multiplication #01. (Inconsistent shape)" << std::endl;
     try
     {
         (Matrix01 * Matrix02).printMatrix();
@@ -49,7 +61,10 @@ int main()
     {
         std::cout << e.what() << std::endl;
     }
+    std::cout << "========================================" << std::endl;
 
+    std::cout << "========================================" << std::endl;
+    std::cout << "Test matrix multiplication #02. (Consistant shape" << std::endl;
     try
     {
         std::cout << "Matrix02 = " << std::endl;
@@ -63,6 +78,7 @@ int main()
     {
         std::cout << e.what() << std::endl;
     }
+    std::cout << "========================================" << std::endl;
 
     return 0;
 }
