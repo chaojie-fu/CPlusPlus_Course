@@ -14,7 +14,7 @@ add_executable(Homework_04 Homework_04.cpp)
 
 add_library(Lib_Homework_02 MyMatrix.cpp MyMatrix.h)
 add_library(Lib_Homework_03 MyMatrix3.cpp MyMatrix3.h)
-add_library(Lib_Homework_04 MyMatrix4.cpp MyMatrix4.h)
+add_library(Lib_Homework_04 MyMatrix4.cpp MyMatrix4.h Serialization.h Serialization.cpp)
 
 target_link_libraries(Homework_02 PUBLIC Lib_Homework_02)
 target_link_libraries(Homework_03 PUBLIC Lib_Homework_03)

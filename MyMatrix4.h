@@ -1,29 +1,33 @@
 # include <iostream>
+
+# ifndef MYMATRIX4
+# define MYMATRIX4
+
 template <class T>
-class MyMatrix3
+class MyMatrix4
 {
   private:
     T ** matrix;
     size_t num_cols;
     size_t num_rows;
   public:
-    MyMatrix3();
-    MyMatrix3(size_t f_num_rows, size_t f_num_cols);
-    MyMatrix3(MyMatrix3 & oldMatrix);
-    MyMatrix3(MyMatrix3 && oldMatrix);
-    ~MyMatrix3();
+    MyMatrix4();
+    MyMatrix4(size_t f_num_rows, size_t f_num_cols);
+    MyMatrix4(MyMatrix4 & oldMatrix);
+    MyMatrix4(MyMatrix4 && oldMatrix);
+    ~MyMatrix4();
 
     /* overload operators
       */
-    MyMatrix3 operator=(MyMatrix3 & Matrix);
-    MyMatrix3 operator=(MyMatrix3 && Matrix);
-    MyMatrix3 operator+(MyMatrix3 & Matrix);
-    MyMatrix3 operator*(MyMatrix3 & Matrix);
+    MyMatrix4 operator=(MyMatrix4 & Matrix);
+    MyMatrix4 operator=(MyMatrix4 && Matrix);
+    MyMatrix4 operator+(MyMatrix4 & Matrix);
+    MyMatrix4 operator*(MyMatrix4 & Matrix);
     T operator()(size_t row, size_t col);
     template <class U>
-    friend std::istream & operator>>(std::istream & input, MyMatrix3<U> & Matrix);
+    friend std::istream & operator>>(std::istream & input, MyMatrix4<U> & Matrix);
     template <class U>
-    friend std::ostream & operator<<(std::ostream & output, MyMatrix3<U> & Matrix);
+    friend std::ostream & operator<<(std::ostream & output, MyMatrix4<U> & Matrix);
 
     size_t getNumCols();
     size_t getNumRows();
@@ -34,7 +38,7 @@ class MyMatrix3
 };
 
 template <class U>
-std::istream & operator>>(std::istream & input, MyMatrix3<U> & Matrix)
+std::istream & operator>>(std::istream & input, MyMatrix4<U> & Matrix)
 {
   std::cout << "Input data as commanded. The matrix size is " << Matrix.getNumRows() << " * " << Matrix.getNumCols() << std::endl;
   for (size_t row = 0; row < Matrix.getNumRows(); row ++)
@@ -51,7 +55,7 @@ std::istream & operator>>(std::istream & input, MyMatrix3<U> & Matrix)
 };
 
 template <class U>
-std::ostream & operator<<(std::ostream & output, MyMatrix3<U> & Matrix)
+std::ostream & operator<<(std::ostream & output, MyMatrix4<U> & Matrix)
 {
   output << std::endl;
   for (size_t row = 0; row < Matrix.getNumRows(); row ++)
@@ -66,3 +70,5 @@ std::ostream & operator<<(std::ostream & output, MyMatrix3<U> & Matrix)
   output << std::endl;
   return output;
 };
+
+# endif
