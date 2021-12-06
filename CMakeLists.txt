@@ -28,9 +28,7 @@ target_link_libraries(Final_Project_Test_PersonnelManagementSystem PUBLIC Lib_Fi
 
 if((BUILD STREQUAL "Debug") OR (BUILD STREQUAL "debug"))
     message("Debug Mode")
-    target_compile_definitions(Lib_Homework_03 PUBLIC DEBUG)
-    target_compile_definitions(Lib_Homework_04 PUBLIC DEBUG)
-    target_compile_definitions(Lib_Final_Project_Test_PersonnelManagementSystem PUBLIC DEBUG)
+    add_compile_definitions(DEBUG)
     add_compile_options(-D)
 else()
     message("Release Mode")
