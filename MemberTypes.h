@@ -27,6 +27,12 @@ static std::map<Gender, std::string> GenderToString =
     {Male, "Male"}
 };
 
+static std::map<std::string, Gender> StringToGender= 
+{
+    {"Female", Female},
+    {"Male", Male}
+};
+
 enum MemberType
 {
     TYPE_UndergraduateStudent = 0,
@@ -36,6 +42,15 @@ enum MemberType
     TYPE_Teacher = 4
 };
 
+static std::map<MemberType, std::string> MemberTypeToString = 
+{
+    {TYPE_UndergraduateStudent, "UndergraduateStudent"},
+    {TYPE_FullTimePostgraduate, "FullTimePostgraduate"},
+    {TYPE_OnJobPostgraduate, "OnJobPostgraduate"},
+    {TYPE_Staff, "Staff"},
+    {TYPE_Teacher, "Teacher"},
+
+};
 class MemberBase
 {
     protected:

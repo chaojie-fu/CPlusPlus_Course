@@ -34,4 +34,7 @@ class PersonnelManagementSystem
         void LookupMemberByIDNumber(IDNumber idnumber);
 
         void PrintAllInfos();
+
+        void Serialize(std::string & FileName);
+        friend void PMS_Deserialize(PersonnelManagementSystem & system, std::string & FileName);
 };

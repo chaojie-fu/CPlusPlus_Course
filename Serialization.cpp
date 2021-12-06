@@ -5,7 +5,6 @@
 # include <fstream>
 # include <sstream>
 # include <vector>
-# include <typeinfo>
 # include "Serialization.h"
 
 template <class T>
@@ -15,7 +14,7 @@ void Serialization<T>::serialize(MyMatrix4<T> &  Matrix, std::string & name)
 
     if (!outFile.is_open())
     {
-        throw std::runtime_error("File not found.");
+        throw std::runtime_error("Unable to open file.");
         return;
     }
     else

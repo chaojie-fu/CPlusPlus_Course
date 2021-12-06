@@ -24,9 +24,9 @@ void MemberBase::setAge(Age newAge)
 {
     age = newAge;
 }
-void MemberBase::setIDNumber(IDNumber idNumber)
+void MemberBase::setIDNumber(IDNumber new_idNumber)
 {
-    idNumber = idNumber;
+    idNumber = new_idNumber;
 }
 
 Name MemberBase::getName()

@@ -11,7 +11,7 @@ int main()
     UndergraduateStudent student_1_3(student_1_2);
     student_1_3.setScore(690);
     student_1_3.setName("USG-3");
-
+    student_1_3.setIDNumber("00000001");
 
     std::cout << "========================================" << std::endl;
     std::cout << "Test List of Custom Class UndergraduateStudent" << std::endl;

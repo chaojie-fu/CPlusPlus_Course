@@ -1,5 +1,7 @@
 // ID Number is an identical field, use it to do validation, looking up, deleting and so on.
-#include "PersonnelManagementSystem.h"
+# include <fstream>
+# include <sstream>
+# include "PersonnelManagementSystem.h"
 
 bool PersonnelManagementSystem::_checkNewMemberByIDNumber(UndergraduateStudent &m_Member)
 {
@@ -550,4 +552,191 @@ void PersonnelManagementSystem::PrintAllInfos()
     std::cout << "All information of " << NumOfMembers() << " member(s) printed." << std::endl;
     std::cout << "========================================" << std::endl;
     std::cout << "" << std::endl;
+}
+
+void PersonnelManagementSystem::Serialize(std::string & FileName)
+{
+    std::ofstream outFile(FileName);
+
+    if (!outFile.is_open())
+    {
+        throw std::runtime_error("Unable to open file.");
+        return;
+    }
+    else
+    {
+        std::cout << "Saving database to file: " << FileName << std::endl;
+        std::list<UndergraduateStudent>::iterator UndergraduateStudent_Iter = UndergraduateStudent_List.begin();
+        for (; UndergraduateStudent_Iter != UndergraduateStudent_List.end(); UndergraduateStudent_Iter++)
+        {
+            outFile << MemberTypeToString[UndergraduateStudent_Iter->getMemberType()] << "," << UndergraduateStudent_Iter->getName() << "," << GenderToString[UndergraduateStudent_Iter->getGender()] << "," << UndergraduateStudent_Iter->getAge() << "," << UndergraduateStudent_Iter->getIDNumber() << "," << UndergraduateStudent_Iter->getScore() << "," << std::endl;
+        }
+
+        std::list<FullTimePostgraduate>::iterator FullTimePostgraduate_Iter = FullTimePostgraduate_List.begin();
+        for (; FullTimePostgraduate_Iter != FullTimePostgraduate_List.end(); FullTimePostgraduate_Iter++)
+        {
+            outFile << MemberTypeToString[FullTimePostgraduate_Iter->getMemberType()] << "," << FullTimePostgraduate_Iter->getName() << "," << GenderToString[FullTimePostgraduate_Iter->getGender()] << "," << FullTimePostgraduate_Iter->getAge() << "," << FullTimePostgraduate_Iter->getIDNumber() << "," << FullTimePostgraduate_Iter->getMajor() << "," << std::endl;
+        }
+
+        std::list<OnJobPostgraduate>::iterator OnJobPostgraduate_Iter = OnJobPostgraduate_List.begin();
+        for (; OnJobPostgraduate_Iter != OnJobPostgraduate_List.end(); OnJobPostgraduate_Iter++)
+        {
+            outFile << MemberTypeToString[OnJobPostgraduate_Iter->getMemberType()] << "," << OnJobPostgraduate_Iter->getName() << "," << GenderToString[OnJobPostgraduate_Iter->getGender()] << "," << OnJobPostgraduate_Iter->getAge() << "," << OnJobPostgraduate_Iter->getIDNumber() << "," << OnJobPostgraduate_Iter->getStudentNumber() << "," << OnJobPostgraduate_Iter->getMajor() << "," << OnJobPostgraduate_Iter->getSalary() << "," << std::endl;
+        }
+
+        std::list<Staff>::iterator Staff_Iter = Staff_List.begin();
+        for (; Staff_Iter != Staff_List.end(); Staff_Iter++)
+        {
+            outFile << MemberTypeToString[Staff_Iter->getMemberType()] << "," << Staff_Iter->getName() << "," << GenderToString[Staff_Iter->getGender()] << "," << Staff_Iter->getAge() << "," << Staff_Iter->getIDNumber() << "," << Staff_Iter->getSalary() << "," << Staff_Iter->getJob() << "," << std::endl;
+        }
+
+        std::list<Teacher>::iterator Teacher_Iter = Teacher_List.begin();
+        for (; Teacher_Iter != Teacher_List.end(); Teacher_Iter++)
+        {
+            outFile << MemberTypeToString[Teacher_Iter->getMemberType()] << "," << Teacher_Iter->getName() << "," << GenderToString[Teacher_Iter->getGender()] << "," << Teacher_Iter->getAge() << "," << Teacher_Iter->getIDNumber() << "," << Teacher_Iter->getSalary() << "," << Teacher_Iter->getMajor() << "," << std::endl;
+        }
+        outFile.close();
+        std::cout << "Database saved." << std::endl;
+    }
+}
+
+void PMS_Deserialize(PersonnelManagementSystem & system, std::string & FileName)
+{
+    std::ifstream inFile(FileName);
+
+    if (!inFile.is_open())
+    {
+        throw std::runtime_error("File not found.");
+        exit(-2);
+    }
+    else
+    {
+        std::cout << "Loading database from file: " << FileName << std::endl;
+        std::string line; // variable to store one line.
+
+        std::string MemberTypeString;
+        std::string tmp;
+        Name m_name;
+        Gender m_gender;
+        Age m_age;
+        IDNumber m_idnumber;
+        Score m_score;
+        Major m_major;
+        StudentNumber m_studentNumber;
+        Salary m_salary;
+        Job m_job;
+
+        # ifdef DEBUG
+            std::cout << "Start reading file." << std::endl;
+        # endif
+        while (std::getline(inFile, line))
+        {
+            std::stringstream ss(line); //create a string stream from line.
+
+            # ifdef DEBUG
+                std::cout << line << std::endl;
+            # endif
+            /*
+                check data files by checking if the data number of the rows are the same.
+                */
+            getline(ss, MemberTypeString, ',');
+            # ifdef DEBUG
+                std::cout << MemberTypeString << std::endl;
+            #endif
+            if (MemberTypeString == "UndergraduateStudent")
+            {
+                getline(ss, tmp, ',');
+                m_name = tmp;
+                getline(ss, tmp, ',');
+                m_gender = StringToGender[tmp];
+                getline(ss, tmp, ',');
+                m_age = std::stoi(tmp);
+                getline(ss, tmp, ',');
+                m_idnumber = tmp;
+                getline(ss, tmp, ',');
+                m_score = std::stoi(tmp);
+
+                UndergraduateStudent m_UndergraduateStudent(m_name, m_gender, m_age, m_idnumber, m_score);
+                system.InsertMemberAtEnd(m_UndergraduateStudent);
+            }
+            else if (MemberTypeString == "FullTimePostgraduate")
+            {
+                getline(ss, tmp, ',');
+                m_name = tmp;
+                getline(ss, tmp, ',');
+                m_gender = StringToGender[tmp];
+                getline(ss, tmp, ',');
+                m_age = std::stoi(tmp);
+                getline(ss, tmp, ',');
+                m_idnumber = tmp;
+                getline(ss, tmp, ',');
+                m_major = tmp;
+
+                FullTimePostgraduate m_FullTimePostgraduate(m_name, m_gender, m_age, m_idnumber, m_major);
+                system.InsertMemberAtEnd(m_FullTimePostgraduate);
+            }
+            else if (MemberTypeString == "OnJobPostgraduate")
+            {
+                getline(ss, tmp, ',');
+                m_name = tmp;
+                getline(ss, tmp, ',');
+                m_gender = StringToGender[tmp];
+                getline(ss, tmp, ',');
+                m_age = std::stoi(tmp);
+                getline(ss, tmp, ',');
+                m_idnumber = tmp;
+                getline(ss, tmp, ',');
+                m_studentNumber = tmp;
+                getline(ss, tmp, ',');
+                m_major = tmp;
+                getline(ss, tmp, ',');
+                m_salary = std::stod(tmp);
+
+                OnJobPostgraduate m_OnJobPostgraduate(m_name, m_gender, m_age, m_idnumber, m_studentNumber, m_major, m_salary);
+                system.InsertMemberAtEnd(m_OnJobPostgraduate);
+            }
+            else if (MemberTypeString == "Staff")
+            {
+                getline(ss, tmp, ',');
+                m_name = tmp;
+                getline(ss, tmp, ',');
+                m_gender = StringToGender[tmp];
+                getline(ss, tmp, ',');
+                m_age = std::stoi(tmp);
+                getline(ss, tmp, ',');
+                m_idnumber = tmp;
+                getline(ss, tmp, ',');
+                m_salary = std::stod(tmp);
+                getline(ss, tmp, ',');
+                m_job = tmp;
+
+                Staff m_Staff(m_name, m_gender, m_age, m_idnumber, m_salary ,m_job);
+                system.InsertMemberAtEnd(m_Staff);
+            }
+            else if (MemberTypeString == "Teacher")
+            {
+                getline(ss, tmp, ',');
+                m_name = tmp;
+                getline(ss, tmp, ',');
+                m_gender = StringToGender[tmp];
+                getline(ss, tmp, ',');
+                m_age = std::stoi(tmp);
+                getline(ss, tmp, ',');
+                m_idnumber = tmp;
+                getline(ss, tmp, ',');
+                m_salary = std::stod(tmp);
+                getline(ss, tmp, ',');
+                m_major = tmp;
+
+                Teacher m_Teacher(m_name, m_gender, m_age, m_idnumber, m_salary ,m_major);
+                system.InsertMemberAtEnd(m_Teacher);
+            }
+            else
+            {
+                throw std::runtime_error("Unknow member type, please check database file.");
+            }
+        }
+        inFile.close();
+        std::cout << "Database loaded." << std::endl;
+    }
 }

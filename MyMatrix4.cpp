@@ -290,6 +290,40 @@ void MyMatrix4<T>::printMatrix()
   std::cout << std::endl;
 };
 
+template <class U>
+std::istream & operator>>(std::istream & input, MyMatrix4<U> & Matrix)
+{
+  std::cout << "Input data as commanded. The matrix size is " << Matrix.getNumRows() << " * " << Matrix.getNumCols() << std::endl;
+  for (size_t row = 0; row < Matrix.getNumRows(); row ++)
+  {
+    for (size_t col = 0; col < Matrix.getNumCols(); col ++)
+    {
+      U input_var;
+      std::cout << "Element(" << row + 1 << ", " << col + 1 << "): ";
+      input >> input_var;
+      Matrix.setValue(row, col, input_var);
+    }
+  }
+  return input;
+};
+
+template <class U>
+std::ostream & operator<<(std::ostream & output, MyMatrix4<U> & Matrix)
+{
+  output << std::endl;
+  for (size_t row = 0; row < Matrix.getNumRows(); row ++)
+  {
+    for (size_t col = 0; col < Matrix.getNumCols(); col ++)
+    {
+      output.width(8);
+      output << Matrix.getValue(row, col) << "\t";      
+    }
+    output << std::endl;
+  }
+  output << std::endl;
+  return output;
+};
+
 /*
   Add the following lines to avoid 'underfined references'
   Meanwhile, this can restrict the template class type to specific types
