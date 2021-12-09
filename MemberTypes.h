@@ -72,6 +72,7 @@ class MemberBase
         IDNumber getIDNumber();
         
         virtual void printInfo() = 0;
+        virtual MemberType getMemberType() = 0;
 };
 
 class UndergraduateStudent: public MemberBase
