@@ -643,7 +643,7 @@ void PMS_Deserialize(PersonnelManagementSystem & system, std::string & FileName)
             # ifdef DEBUG
                 std::cout << MemberTypeString << std::endl;
             #endif
-            if (MemberTypeString == "UndergraduateStudent")
+            if (MemberTypeString == MemberTypeToString[TYPE_UndergraduateStudent])
             {
                 getline(ss, tmp, ',');
                 m_name = tmp;
@@ -659,7 +659,7 @@ void PMS_Deserialize(PersonnelManagementSystem & system, std::string & FileName)
                 UndergraduateStudent m_UndergraduateStudent(m_name, m_gender, m_age, m_idnumber, m_score);
                 system.InsertMemberAtEnd(m_UndergraduateStudent);
             }
-            else if (MemberTypeString == "FullTimePostgraduate")
+            else if (MemberTypeString == MemberTypeToString[TYPE_FullTimePostgraduate])
             {
                 getline(ss, tmp, ',');
                 m_name = tmp;
@@ -675,7 +675,7 @@ void PMS_Deserialize(PersonnelManagementSystem & system, std::string & FileName)
                 FullTimePostgraduate m_FullTimePostgraduate(m_name, m_gender, m_age, m_idnumber, m_major);
                 system.InsertMemberAtEnd(m_FullTimePostgraduate);
             }
-            else if (MemberTypeString == "OnJobPostgraduate")
+            else if (MemberTypeString == MemberTypeToString[TYPE_OnJobPostgraduate])
             {
                 getline(ss, tmp, ',');
                 m_name = tmp;
@@ -695,7 +695,7 @@ void PMS_Deserialize(PersonnelManagementSystem & system, std::string & FileName)
                 OnJobPostgraduate m_OnJobPostgraduate(m_name, m_gender, m_age, m_idnumber, m_studentNumber, m_major, m_salary);
                 system.InsertMemberAtEnd(m_OnJobPostgraduate);
             }
-            else if (MemberTypeString == "Staff")
+            else if (MemberTypeString == MemberTypeToString[TYPE_Staff])
             {
                 getline(ss, tmp, ',');
                 m_name = tmp;
@@ -713,7 +713,7 @@ void PMS_Deserialize(PersonnelManagementSystem & system, std::string & FileName)
                 Staff m_Staff(m_name, m_gender, m_age, m_idnumber, m_salary ,m_job);
                 system.InsertMemberAtEnd(m_Staff);
             }
-            else if (MemberTypeString == "Teacher")
+            else if (MemberTypeString == MemberTypeToString[TYPE_Teacher])
             {
                 getline(ss, tmp, ',');
                 m_name = tmp;
