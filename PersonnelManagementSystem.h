@@ -14,6 +14,11 @@ class PersonnelManagementSystem
     public:
         bool IsEmpty();
         size_t NumOfMembers();
+
+        /*  
+            Failed to use template for InsertMemberAtEnd() and InsertMemberAtFront().
+            Got some problems with class type inference.
+            */
         void InsertMemberAtEnd(UndergraduateStudent & m_Member);
         void InsertMemberAtEnd(FullTimePostgraduate & m_Member);
         void InsertMemberAtEnd(OnJobPostgraduate & m_Member);
