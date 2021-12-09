@@ -9,11 +9,8 @@ class PersonnelManagementSystem
         std::list<OnJobPostgraduate> OnJobPostgraduate_List;
         std::list<Staff> Staff_List;
         std::list<Teacher> Teacher_List;
-        bool _checkNewMemberByIDNumber(UndergraduateStudent & m_Member);
-        bool _checkNewMemberByIDNumber(FullTimePostgraduate & m_Member);
-        bool _checkNewMemberByIDNumber(OnJobPostgraduate & m_Member);
-        bool _checkNewMemberByIDNumber(Staff & m_Member);
-        bool _checkNewMemberByIDNumber(Teacher & m_Member);
+        template <class U>
+        bool _checkNewMemberByIDNumber(U & m_Member);
     public:
         bool IsEmpty();
         size_t NumOfMembers();
