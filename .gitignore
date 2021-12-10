@@ -4,4 +4,4 @@
 !.gitignore
 !*.sh
 !CMakeLists.txt
-!README.md
+!*.md
