@@ -1,7 +1,1 @@
-*
-!*.cpp
-!*.h
-!.gitignore
-!*.sh
-!CMakeLists.txt
-!*.md
+/build
