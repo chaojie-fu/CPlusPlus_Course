@@ -1,0 +1,2 @@
+add_library(MemberTypes MemberTypes.h MemberTypes.cpp)
+add_library(PersonnelManagementSystem PersonnelManagementSystem.h PersonnelManagementSystem.cpp MemberTypes.h MemberTypes.cpp)

@@ -1,0 +1,1 @@
+add_library(MyMatrix MyMatrix.cpp MyMatrix.h)
