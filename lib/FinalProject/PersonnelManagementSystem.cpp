@@ -401,31 +401,31 @@ bool PersonnelManagementSystem::Serialize(std::string &FileName)
     std::list<UndergraduateStudent>::iterator UndergraduateStudent_Iter = UndergraduateStudent_List.begin();
     for (; UndergraduateStudent_Iter != UndergraduateStudent_List.end(); UndergraduateStudent_Iter++)
     {
-      outFile << MemberTypeToString[UndergraduateStudent_Iter->getMemberType()] << "," << UndergraduateStudent_Iter->getName() << "," << GenderToString[UndergraduateStudent_Iter->getGender()] << "," << UndergraduateStudent_Iter->getAge() << "," << UndergraduateStudent_Iter->getIDNumber() << "," << UndergraduateStudent_Iter->getScore() << "," << std::endl;
+      outFile << MemberTypeToString[UndergraduateStudent_Iter->getMemberType()] << "|" << UndergraduateStudent_Iter->getName() << "|" << GenderToString[UndergraduateStudent_Iter->getGender()] << "|" << UndergraduateStudent_Iter->getAge() << "|" << UndergraduateStudent_Iter->getIDNumber() << "|" << UndergraduateStudent_Iter->getScore() << "|" << std::endl;
     }
 
     std::list<FullTimePostgraduate>::iterator FullTimePostgraduate_Iter = FullTimePostgraduate_List.begin();
     for (; FullTimePostgraduate_Iter != FullTimePostgraduate_List.end(); FullTimePostgraduate_Iter++)
     {
-      outFile << MemberTypeToString[FullTimePostgraduate_Iter->getMemberType()] << "," << FullTimePostgraduate_Iter->getName() << "," << GenderToString[FullTimePostgraduate_Iter->getGender()] << "," << FullTimePostgraduate_Iter->getAge() << "," << FullTimePostgraduate_Iter->getIDNumber() << "," << FullTimePostgraduate_Iter->getMajor() << "," << std::endl;
+      outFile << MemberTypeToString[FullTimePostgraduate_Iter->getMemberType()] << "|" << FullTimePostgraduate_Iter->getName() << "|" << GenderToString[FullTimePostgraduate_Iter->getGender()] << "|" << FullTimePostgraduate_Iter->getAge() << "|" << FullTimePostgraduate_Iter->getIDNumber() << "|" << FullTimePostgraduate_Iter->getMajor() << "|" << std::endl;
     }
 
     std::list<OnJobPostgraduate>::iterator OnJobPostgraduate_Iter = OnJobPostgraduate_List.begin();
     for (; OnJobPostgraduate_Iter != OnJobPostgraduate_List.end(); OnJobPostgraduate_Iter++)
     {
-      outFile << MemberTypeToString[OnJobPostgraduate_Iter->getMemberType()] << "," << OnJobPostgraduate_Iter->getName() << "," << GenderToString[OnJobPostgraduate_Iter->getGender()] << "," << OnJobPostgraduate_Iter->getAge() << "," << OnJobPostgraduate_Iter->getIDNumber() << "," << OnJobPostgraduate_Iter->getStudentNumber() << "," << OnJobPostgraduate_Iter->getMajor() << "," << OnJobPostgraduate_Iter->getSalary() << "," << std::endl;
+      outFile << MemberTypeToString[OnJobPostgraduate_Iter->getMemberType()] << "|" << OnJobPostgraduate_Iter->getName() << "|" << GenderToString[OnJobPostgraduate_Iter->getGender()] << "|" << OnJobPostgraduate_Iter->getAge() << "|" << OnJobPostgraduate_Iter->getIDNumber() << "|" << OnJobPostgraduate_Iter->getStudentNumber() << "|" << OnJobPostgraduate_Iter->getMajor() << "|" << OnJobPostgraduate_Iter->getSalary() << "|" << std::endl;
     }
 
     std::list<Staff>::iterator Staff_Iter = Staff_List.begin();
     for (; Staff_Iter != Staff_List.end(); Staff_Iter++)
     {
-      outFile << MemberTypeToString[Staff_Iter->getMemberType()] << "," << Staff_Iter->getName() << "," << GenderToString[Staff_Iter->getGender()] << "," << Staff_Iter->getAge() << "," << Staff_Iter->getIDNumber() << "," << Staff_Iter->getSalary() << "," << Staff_Iter->getJob() << "," << std::endl;
+      outFile << MemberTypeToString[Staff_Iter->getMemberType()] << "|" << Staff_Iter->getName() << "|" << GenderToString[Staff_Iter->getGender()] << "|" << Staff_Iter->getAge() << "|" << Staff_Iter->getIDNumber() << "|" << Staff_Iter->getSalary() << "|" << Staff_Iter->getJob() << "|" << std::endl;
     }
 
     std::list<Teacher>::iterator Teacher_Iter = Teacher_List.begin();
     for (; Teacher_Iter != Teacher_List.end(); Teacher_Iter++)
     {
-      outFile << MemberTypeToString[Teacher_Iter->getMemberType()] << "," << Teacher_Iter->getName() << "," << GenderToString[Teacher_Iter->getGender()] << "," << Teacher_Iter->getAge() << "," << Teacher_Iter->getIDNumber() << "," << Teacher_Iter->getSalary() << "," << Teacher_Iter->getMajor() << "," << std::endl;
+      outFile << MemberTypeToString[Teacher_Iter->getMemberType()] << "|" << Teacher_Iter->getName() << "|" << GenderToString[Teacher_Iter->getGender()] << "|" << Teacher_Iter->getAge() << "|" << Teacher_Iter->getIDNumber() << "|" << Teacher_Iter->getSalary() << "|" << Teacher_Iter->getMajor() << "|" << std::endl;
     }
     outFile.close();
     std::cout << "Database saved." << std::endl;
@@ -474,21 +474,21 @@ bool PMS_Deserialize(PersonnelManagementSystem &system, std::string &FileName)
       /*
                 check data files by checking if the data number of the rows are the same.
                 */
-      getline(ss, MemberTypeString, ',');
+      getline(ss, MemberTypeString, '|');
 #ifdef DEBUG
       std::cout << MemberTypeString << std::endl;
 #endif
       if (MemberTypeString == MemberTypeToString[TYPE_UndergraduateStudent])
       {
-        getline(ss, tmp, ',');
+        getline(ss, tmp, '|');
         m_name = tmp;
-        getline(ss, tmp, ',');
+        getline(ss, tmp, '|');
         m_gender = StringToGender[tmp];
-        getline(ss, tmp, ',');
+        getline(ss, tmp, '|');
         m_age = std::stoi(tmp);
-        getline(ss, tmp, ',');
+        getline(ss, tmp, '|');
         m_idnumber = tmp;
-        getline(ss, tmp, ',');
+        getline(ss, tmp, '|');
         m_score = std::stoi(tmp);
 
         UndergraduateStudent m_UndergraduateStudent(m_name, m_gender, m_age, m_idnumber, m_score);
@@ -496,15 +496,15 @@ bool PMS_Deserialize(PersonnelManagementSystem &system, std::string &FileName)
       }
       else if (MemberTypeString == MemberTypeToString[TYPE_FullTimePostgraduate])
       {
-        getline(ss, tmp, ',');
+        getline(ss, tmp, '|');
         m_name = tmp;
-        getline(ss, tmp, ',');
+        getline(ss, tmp, '|');
         m_gender = StringToGender[tmp];
-        getline(ss, tmp, ',');
+        getline(ss, tmp, '|');
         m_age = std::stoi(tmp);
-        getline(ss, tmp, ',');
+        getline(ss, tmp, '|');
         m_idnumber = tmp;
-        getline(ss, tmp, ',');
+        getline(ss, tmp, '|');
         m_major = tmp;
 
         FullTimePostgraduate m_FullTimePostgraduate(m_name, m_gender, m_age, m_idnumber, m_major);
@@ -512,19 +512,19 @@ bool PMS_Deserialize(PersonnelManagementSystem &system, std::string &FileName)
       }
       else if (MemberTypeString == MemberTypeToString[TYPE_OnJobPostgraduate])
       {
-        getline(ss, tmp, ',');
+        getline(ss, tmp, '|');
         m_name = tmp;
-        getline(ss, tmp, ',');
+        getline(ss, tmp, '|');
         m_gender = StringToGender[tmp];
-        getline(ss, tmp, ',');
+        getline(ss, tmp, '|');
         m_age = std::stoi(tmp);
-        getline(ss, tmp, ',');
+        getline(ss, tmp, '|');
         m_idnumber = tmp;
-        getline(ss, tmp, ',');
+        getline(ss, tmp, '|');
         m_studentNumber = tmp;
-        getline(ss, tmp, ',');
+        getline(ss, tmp, '|');
         m_major = tmp;
-        getline(ss, tmp, ',');
+        getline(ss, tmp, '|');
         m_salary = std::stod(tmp);
 
         OnJobPostgraduate m_OnJobPostgraduate(m_name, m_gender, m_age, m_idnumber, m_studentNumber, m_major, m_salary);
@@ -532,17 +532,17 @@ bool PMS_Deserialize(PersonnelManagementSystem &system, std::string &FileName)
       }
       else if (MemberTypeString == MemberTypeToString[TYPE_Staff])
       {
-        getline(ss, tmp, ',');
+        getline(ss, tmp, '|');
         m_name = tmp;
-        getline(ss, tmp, ',');
+        getline(ss, tmp, '|');
         m_gender = StringToGender[tmp];
-        getline(ss, tmp, ',');
+        getline(ss, tmp, '|');
         m_age = std::stoi(tmp);
-        getline(ss, tmp, ',');
+        getline(ss, tmp, '|');
         m_idnumber = tmp;
-        getline(ss, tmp, ',');
+        getline(ss, tmp, '|');
         m_salary = std::stod(tmp);
-        getline(ss, tmp, ',');
+        getline(ss, tmp, '|');
         m_job = tmp;
 
         Staff m_Staff(m_name, m_gender, m_age, m_idnumber, m_salary, m_job);
@@ -550,17 +550,17 @@ bool PMS_Deserialize(PersonnelManagementSystem &system, std::string &FileName)
       }
       else if (MemberTypeString == MemberTypeToString[TYPE_Teacher])
       {
-        getline(ss, tmp, ',');
+        getline(ss, tmp, '|');
         m_name = tmp;
-        getline(ss, tmp, ',');
+        getline(ss, tmp, '|');
         m_gender = StringToGender[tmp];
-        getline(ss, tmp, ',');
+        getline(ss, tmp, '|');
         m_age = std::stoi(tmp);
-        getline(ss, tmp, ',');
+        getline(ss, tmp, '|');
         m_idnumber = tmp;
-        getline(ss, tmp, ',');
+        getline(ss, tmp, '|');
         m_salary = std::stod(tmp);
-        getline(ss, tmp, ',');
+        getline(ss, tmp, '|');
         m_major = tmp;
 
         Teacher m_Teacher(m_name, m_gender, m_age, m_idnumber, m_salary, m_major);

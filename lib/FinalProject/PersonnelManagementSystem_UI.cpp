@@ -37,8 +37,6 @@ void PersonnelManagementSystem_UI::MainMenu()
     std::cout << "[4] Save data to file" << std::endl;
     std::cout << "[5] Load data from file" << std::endl;
     std::cout << "[6] Exit system" << std::endl;
-    std::cout << "===================================================" << std::endl;
-    std::cout << std::endl;
 #ifdef DEBUG
     std::this_thread::sleep_for(std::chrono::milliseconds(100));
 #endif
@@ -48,9 +46,11 @@ void PersonnelManagementSystem_UI::MainMenu()
     if (std::cin.fail())
     {
       choice_main = -1;
-      std::cin.clear();
-      std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
     }
+    std::cin.clear();
+    std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
+    std::cout << "===================================================" << std::endl;
+    std::cout << std::endl;
     switch (choice_main)
     {
     case 0:
@@ -89,7 +89,7 @@ void PersonnelManagementSystem_UI::MainMenu()
       {
         std::cout << "Your data have not been saved, do you still want to exit? [Y/N]: ";
         std::string continue_flag;
-        std::cin >> continue_flag;
+        std::getline(std::cin, continue_flag);
         if (continue_flag == "Y" || continue_flag == "y")
         {
           std::cout << "System exited." << std::endl;
@@ -109,15 +109,15 @@ void PersonnelManagementSystem_UI::MainMenu()
       break;
     }
     }
-    std::cin.clear();
-    std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
   }
 }
 
 void PersonnelManagementSystem_UI::InsertMemeberUI()
 {
   std::cout << std::endl;
+  std::cout << "===================================================" << std::endl;
   std::cout << "================ Insert new Member ================" << std::endl;
+  std::cout << "===================================================" << std::endl;
   std::cout << "Which kind of member do you want to insert?" << std::endl;
   std::cout << "[0] Undergraduate Student" << std::endl;
   std::cout << "[1] Full-Time Postgraduate" << std::endl;
@@ -132,9 +132,9 @@ void PersonnelManagementSystem_UI::InsertMemeberUI()
   if (std::cin.fail())
   {
     choice_insert = -1;
-    std::cin.clear();
-    std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
   }
+  std::cin.clear();
+  std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
 
 #ifdef DEBUG
   std::cout << choice_insert << std::endl;
@@ -154,10 +154,14 @@ void PersonnelManagementSystem_UI::InsertMemeberUI()
     Score m_score;
 
     std::cout << "Name: ";
-    std::cin >> m_name;
+    std::getline(std::cin, m_name);
 
     std::cout << "Gender[0: Male; 1:Female]: ";
     std::cin >> gender_flag;
+    if (std::cin.fail())
+    {
+      gender_flag = -1;
+    }
     while (gender_flag != 0 && gender_flag != 1)
     {
 #ifdef DEBUG
@@ -176,12 +180,16 @@ void PersonnelManagementSystem_UI::InsertMemeberUI()
 
     std::cout << "Age: ";
     std::cin >> m_age;
+    std::cin.clear();
+    std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
 
     std::cout << "ID Number: ";
-    std::cin >> m_idnumber;
+    std::getline(std::cin, m_idnumber);
 
     std::cout << "Score: ";
     std::cin >> m_score;
+    std::cin.clear();
+    std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
 
     UndergraduateStudent member(m_name, m_gender, m_age, m_idnumber, m_score);
     if (system.InsertMemberAtEnd(member))
@@ -202,10 +210,14 @@ void PersonnelManagementSystem_UI::InsertMemeberUI()
     Major m_major;
 
     std::cout << "Name: ";
-    std::cin >> m_name;
+    std::getline(std::cin, m_name);
 
     std::cout << "Gender[0: Male; 1:Female]: ";
     std::cin >> gender_flag;
+    if (std::cin.fail())
+    {
+      gender_flag = -1;
+    }
     while (gender_flag != 0 && gender_flag != 1)
     {
 #ifdef DEBUG
@@ -224,12 +236,14 @@ void PersonnelManagementSystem_UI::InsertMemeberUI()
 
     std::cout << "Age: ";
     std::cin >> m_age;
+    std::cin.clear();
+    std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
 
     std::cout << "ID Number: ";
-    std::cin >> m_idnumber;
+    std::getline(std::cin, m_idnumber);
 
     std::cout << "Major: ";
-    std::cin >> m_major;
+    std::getline(std::cin, m_major);
 
     FullTimePostgraduate member(m_name, m_gender, m_age, m_idnumber, m_major);
     if (system.InsertMemberAtEnd(member))
@@ -252,10 +266,14 @@ void PersonnelManagementSystem_UI::InsertMemeberUI()
     Salary m_salary;
 
     std::cout << "Name: ";
-    std::cin >> m_name;
+    std::getline(std::cin, m_name);
 
     std::cout << "Gender[0: Male; 1:Female]: ";
     std::cin >> gender_flag;
+    if (std::cin.fail())
+    {
+      gender_flag = -1;
+    }
     while (gender_flag != 0 && gender_flag != 1)
     {
 #ifdef DEBUG
@@ -274,18 +292,22 @@ void PersonnelManagementSystem_UI::InsertMemeberUI()
 
     std::cout << "Age: ";
     std::cin >> m_age;
+    std::cin.clear();
+    std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
 
     std::cout << "ID Number: ";
-    std::cin >> m_idnumber;
+    std::getline(std::cin, m_idnumber);
 
     std::cout << "Student Number: ";
-    std::cin >> m_studentnumber;
+    std::getline(std::cin, m_idnumber);
 
     std::cout << "Major: ";
-    std::cin >> m_major;
+    std::getline(std::cin, m_major);
 
     std::cout << "Salary: ";
     std::cin >> m_salary;
+    std::cin.clear();
+    std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
 
     OnJobPostgraduate member(m_name, m_gender, m_age, m_idnumber, m_studentnumber, m_major, m_salary);
     if (system.InsertMemberAtEnd(member))
@@ -307,10 +329,14 @@ void PersonnelManagementSystem_UI::InsertMemeberUI()
     Job m_job;
 
     std::cout << "Name: ";
-    std::cin >> m_name;
+    std::getline(std::cin, m_name);
 
     std::cout << "Gender[0: Male; 1:Female]: ";
     std::cin >> gender_flag;
+    if (std::cin.fail())
+    {
+      gender_flag = -1;
+    }
     while (gender_flag != 0 && gender_flag != 1)
     {
 #ifdef DEBUG
@@ -329,15 +355,19 @@ void PersonnelManagementSystem_UI::InsertMemeberUI()
 
     std::cout << "Age: ";
     std::cin >> m_age;
+    std::cin.clear();
+    std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
 
     std::cout << "ID Number: ";
-    std::cin >> m_idnumber;
+    std::getline(std::cin, m_idnumber);
 
     std::cout << "Salary: ";
     std::cin >> m_salary;
+    std::cin.clear();
+    std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
 
     std::cout << "Job: ";
-    std::cin >> m_job;
+    std::getline(std::cin, m_job);
 
     Staff member(m_name, m_gender, m_age, m_idnumber, m_salary, m_job);
     if (system.InsertMemberAtEnd(member))
@@ -359,10 +389,14 @@ void PersonnelManagementSystem_UI::InsertMemeberUI()
     Major m_major;
 
     std::cout << "Name: ";
-    std::cin >> m_name;
+    std::getline(std::cin, m_name);
 
     std::cout << "Gender[0: Male; 1:Female]: ";
     std::cin >> gender_flag;
+    if (std::cin.fail())
+    {
+      gender_flag = -1;
+    }
     while (gender_flag != 0 && gender_flag != 1)
     {
 #ifdef DEBUG
@@ -381,15 +415,19 @@ void PersonnelManagementSystem_UI::InsertMemeberUI()
 
     std::cout << "Age: ";
     std::cin >> m_age;
+    std::cin.clear();
+    std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
 
     std::cout << "ID Number: ";
-    std::cin >> m_idnumber;
+    std::getline(std::cin, m_idnumber);
 
     std::cout << "Salary: ";
     std::cin >> m_salary;
+    std::cin.clear();
+    std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
 
     std::cout << "Major: ";
-    std::cin >> m_major;
+    std::getline(std::cin, m_major);
 
     Teacher member(m_name, m_gender, m_age, m_idnumber, m_salary, m_major);
     if (system.InsertMemberAtEnd(member))
@@ -415,13 +453,15 @@ void PersonnelManagementSystem_UI::InsertMemeberUI()
 void PersonnelManagementSystem_UI::DeleteMemberUI()
 {
   std::cout << std::endl;
+  std::cout << "===================================================" << std::endl;
   std::cout << "================== Delete Member ==================" << std::endl;
+  std::cout << "===================================================" << std::endl;
   std::cout << "Input ID Number to delete the member from database:";
   IDNumber m_idnumber;
-  std::cin >> m_idnumber;
+  std::getline(std::cin, m_idnumber);
   if (m_idnumber.empty())
   {
-    std::cout << "Return to upper menu." << std::endl;
+    std::cout << "Return to upper menu because of the empty input." << std::endl;
     std::cout << "===================================================" << std::endl;
     std::cout << std::endl;
     return;
@@ -441,13 +481,15 @@ void PersonnelManagementSystem_UI::DeleteMemberUI()
 void PersonnelManagementSystem_UI::LookupUI()
 {
   std::cout << std::endl;
+  std::cout << "===================================================" << std::endl;
   std::cout << "================== Lookup Member ==================" << std::endl;
+  std::cout << "===================================================" << std::endl;
   std::cout << "Input ID Number to lookup the member:";
   IDNumber m_idnumber;
-  std::cin >> m_idnumber;
+  std::getline(std::cin, m_idnumber);
   if (m_idnumber.empty())
   {
-    std::cout << "Return to upper menu." << std::endl;
+    std::cout << "Return to upper menu because of the empty input." << std::endl;
     std::cout << "===================================================" << std::endl;
     std::cout << std::endl;
     return;
@@ -464,7 +506,9 @@ void PersonnelManagementSystem_UI::LookupUI()
 void PersonnelManagementSystem_UI::PrintUI()
 {
   std::cout << std::endl;
+  std::cout << "===================================================" << std::endl;
   std::cout << "================ Print Information ================" << std::endl;
+  std::cout << "===================================================" << std::endl;
   system.PrintAllInfos();
   std::cout << "===================================================" << std::endl;
   std::cout << std::endl;
@@ -473,10 +517,12 @@ void PersonnelManagementSystem_UI::PrintUI()
 void PersonnelManagementSystem_UI::SaveDataUI()
 {
   std::cout << std::endl;
+  std::cout << "===================================================" << std::endl;
   std::cout << "==================== Save Data ====================" << std::endl;
-  std::cout << "Input the file name you want to save to:";
+  std::cout << "===================================================" << std::endl;
+  std::cout << "Input the file name you want to save to (default: database.csv):";
   std::string filename;
-  std::cin >> filename;
+  std::getline(std::cin, filename);
   if (filename.empty())
   {
     filename = "database.csv";
@@ -492,17 +538,19 @@ void PersonnelManagementSystem_UI::SaveDataUI()
 void PersonnelManagementSystem_UI::LoadDataUI()
 {
   std::cout << std::endl;
+  std::cout << "===================================================" << std::endl;
   std::cout << "==================== Load Data ====================" << std::endl;
+  std::cout << "===================================================" << std::endl;
   if (is_latest = false)
   {
     std::cout << "Your data have not been saved, do you want to continue? [Y/N]: ";
     std::string continue_flag;
-    std::cin >> continue_flag;
+    std::getline(std::cin, continue_flag);
     if (continue_flag == "Y" || continue_flag == "y")
     {
-      std::cout << "Input the file name you want to load: ";
+      std::cout << "Input the file name you want to load (default: database.csv): ";
       std::string filename;
-      std::cin >> filename;
+      std::getline(std::cin, filename);
       if (filename.empty())
       {
         filename = "database.csv";
@@ -525,9 +573,9 @@ void PersonnelManagementSystem_UI::LoadDataUI()
   }
   else
   {
-    std::cout << "Input the file name you want to load: ";
+    std::cout << "Input the file name you want to load (default: database.csv): ";
     std::string filename;
-    std::cin >> filename;
+    std::getline(std::cin, filename);
     if (filename.empty())
     {
       filename = "database.csv";

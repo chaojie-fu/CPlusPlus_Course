@@ -5,7 +5,7 @@
 typedef std::string Name;
 typedef unsigned int Age;
 typedef std::string IDNumber;
-typedef int Score;
+typedef unsigned int Score;
 typedef std::string Major;
 typedef std::string StudentNumber;
 typedef double Salary;
