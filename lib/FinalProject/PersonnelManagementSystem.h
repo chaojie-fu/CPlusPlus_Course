@@ -14,30 +14,31 @@ private:
 
 public:
   bool IsEmpty();
+  void Clear();
   size_t NumOfMembers();
 
   /*  
             Failed to use template for InsertMemberAtEnd() and InsertMemberAtFront().
             Got some problems with class type inference.
             */
-  void InsertMemberAtEnd(UndergraduateStudent &m_Member);
-  void InsertMemberAtEnd(FullTimePostgraduate &m_Member);
-  void InsertMemberAtEnd(OnJobPostgraduate &m_Member);
-  void InsertMemberAtEnd(Staff &m_Member);
-  void InsertMemberAtEnd(Teacher &m_Member);
+  bool InsertMemberAtEnd(UndergraduateStudent &m_Member);
+  bool InsertMemberAtEnd(FullTimePostgraduate &m_Member);
+  bool InsertMemberAtEnd(OnJobPostgraduate &m_Member);
+  bool InsertMemberAtEnd(Staff &m_Member);
+  bool InsertMemberAtEnd(Teacher &m_Member);
 
-  void InsertMemberAtFront(UndergraduateStudent &m_Member);
-  void InsertMemberAtFront(FullTimePostgraduate &m_Member);
-  void InsertMemberAtFront(OnJobPostgraduate &m_Member);
-  void InsertMemberAtFront(Staff &m_Member);
-  void InsertMemberAtFront(Teacher &m_Member);
+  bool InsertMemberAtFront(UndergraduateStudent &m_Member);
+  bool InsertMemberAtFront(FullTimePostgraduate &m_Member);
+  bool InsertMemberAtFront(OnJobPostgraduate &m_Member);
+  bool InsertMemberAtFront(Staff &m_Member);
+  bool InsertMemberAtFront(Teacher &m_Member);
 
-  void DeleteMemberByIDNumber(IDNumber idnumber);
+  bool DeleteMemberByIDNumber(IDNumber idnumber);
 
   void LookupMemberByIDNumber(IDNumber idnumber);
 
   void PrintAllInfos();
 
-  void Serialize(std::string &FileName);
-  friend void PMS_Deserialize(PersonnelManagementSystem &system, std::string &FileName);
+  bool Serialize(std::string &FileName);
+  friend bool PMS_Deserialize(PersonnelManagementSystem &system, std::string &FileName);
 };

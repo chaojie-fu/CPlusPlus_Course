@@ -54,162 +54,171 @@ bool PersonnelManagementSystem::IsEmpty()
   return (UndergraduateStudent_List.empty() || FullTimePostgraduate_List.empty() || OnJobPostgraduate_List.empty() || Staff_List.empty() || Teacher_List.empty());
 }
 
+void PersonnelManagementSystem::Clear()
+{
+  UndergraduateStudent_List.clear();
+  FullTimePostgraduate_List.clear();
+  OnJobPostgraduate_List.clear();
+  Staff_List.clear();
+  Teacher_List.clear();
+}
+
 size_t PersonnelManagementSystem::NumOfMembers()
 {
   return (UndergraduateStudent_List.size() + FullTimePostgraduate_List.size() + OnJobPostgraduate_List.size() + Staff_List.size() + Teacher_List.size());
 }
 
-void PersonnelManagementSystem::InsertMemberAtEnd(UndergraduateStudent &m_Member)
+bool PersonnelManagementSystem::InsertMemberAtEnd(UndergraduateStudent &m_Member)
 {
   if (_checkNewMemberByIDNumber(m_Member))
   {
     UndergraduateStudent_List.push_back(m_Member);
     std::cout << "Member added to database." << std::endl;
-    return;
+    return true;
   }
   else
   {
     std::cout << "ID Number duplicated. The new member will NOT be added to the database." << std::endl;
-    return;
+    return false;
   }
 }
 
-void PersonnelManagementSystem::InsertMemberAtEnd(FullTimePostgraduate &m_Member)
+bool PersonnelManagementSystem::InsertMemberAtEnd(FullTimePostgraduate &m_Member)
 {
   if (_checkNewMemberByIDNumber(m_Member))
   {
     FullTimePostgraduate_List.push_back(m_Member);
     std::cout << "Member added to database." << std::endl;
-    return;
+    return true;
   }
   else
   {
     std::cout << "ID Number duplicated. The new member will NOT be added to the database." << std::endl;
-    return;
+    return false;
   }
 }
 
-void PersonnelManagementSystem::InsertMemberAtEnd(OnJobPostgraduate &m_Member)
+bool PersonnelManagementSystem::InsertMemberAtEnd(OnJobPostgraduate &m_Member)
 {
   if (_checkNewMemberByIDNumber(m_Member))
   {
     OnJobPostgraduate_List.push_back(m_Member);
     std::cout << "Member added to database." << std::endl;
-    return;
+    return true;
   }
   else
   {
     std::cout << "ID Number duplicated. The new member will NOT be added to the database." << std::endl;
-    return;
+    return false;
   }
 }
 
-void PersonnelManagementSystem::InsertMemberAtEnd(Staff &m_Member)
+bool PersonnelManagementSystem::InsertMemberAtEnd(Staff &m_Member)
 {
   if (_checkNewMemberByIDNumber(m_Member))
   {
     Staff_List.push_back(m_Member);
     std::cout << "Member added to database." << std::endl;
-    return;
+    return true;
   }
   else
   {
     std::cout << "ID Number duplicated. The new member will NOT be added to the database." << std::endl;
-    return;
+    return false;
   }
 }
 
-void PersonnelManagementSystem::InsertMemberAtEnd(Teacher &m_Member)
+bool PersonnelManagementSystem::InsertMemberAtEnd(Teacher &m_Member)
 {
   if (_checkNewMemberByIDNumber(m_Member))
   {
     Teacher_List.push_back(m_Member);
     std::cout << "Member added to database." << std::endl;
-    return;
+    return true;
   }
   else
   {
     std::cout << "ID Number duplicated. The new member will NOT be added to the database." << std::endl;
-    return;
+    return false;
   }
 }
 
-void PersonnelManagementSystem::InsertMemberAtFront(UndergraduateStudent &m_Member)
+bool PersonnelManagementSystem::InsertMemberAtFront(UndergraduateStudent &m_Member)
 {
   if (_checkNewMemberByIDNumber(m_Member))
   {
     UndergraduateStudent_List.push_front(m_Member);
     std::cout << "Member added to database." << std::endl;
-    return;
+    return true;
   }
   else
   {
     std::cout << "ID Number duplicated. The new member will NOT be added to the database." << std::endl;
-    return;
+    return false;
   }
 }
 
-void PersonnelManagementSystem::InsertMemberAtFront(FullTimePostgraduate &m_Member)
+bool PersonnelManagementSystem::InsertMemberAtFront(FullTimePostgraduate &m_Member)
 {
   if (_checkNewMemberByIDNumber(m_Member))
   {
     FullTimePostgraduate_List.push_front(m_Member);
     std::cout << "Member added to database." << std::endl;
-    return;
+    return true;
   }
   else
   {
     std::cout << "ID Number duplicated. The new member will NOT be added to the database." << std::endl;
-    return;
+    return false;
   }
 }
 
-void PersonnelManagementSystem::InsertMemberAtFront(OnJobPostgraduate &m_Member)
+bool PersonnelManagementSystem::InsertMemberAtFront(OnJobPostgraduate &m_Member)
 {
   if (_checkNewMemberByIDNumber(m_Member))
   {
     OnJobPostgraduate_List.push_front(m_Member);
     std::cout << "Member added to database." << std::endl;
-    return;
+    return true;
   }
   else
   {
     std::cout << "ID Number duplicated. The new member will NOT be added to the database." << std::endl;
-    return;
+    return false;
   }
 }
 
-void PersonnelManagementSystem::InsertMemberAtFront(Staff &m_Member)
+bool PersonnelManagementSystem::InsertMemberAtFront(Staff &m_Member)
 {
   if (_checkNewMemberByIDNumber(m_Member))
   {
     Staff_List.push_front(m_Member);
     std::cout << "Member added to database." << std::endl;
-    return;
+    return true;
   }
   else
   {
     std::cout << "ID Number duplicated. The new member will NOT be added to the database." << std::endl;
-    return;
+    return false;
   }
 }
 
-void PersonnelManagementSystem::InsertMemberAtFront(Teacher &m_Member)
+bool PersonnelManagementSystem::InsertMemberAtFront(Teacher &m_Member)
 {
   if (_checkNewMemberByIDNumber(m_Member))
   {
     Teacher_List.push_front(m_Member);
     std::cout << "Member added to database." << std::endl;
-    return;
+    return true;
   }
   else
   {
     std::cout << "ID Number duplicated. The new member will NOT be added to the database." << std::endl;
-    return;
+    return false;
   }
 }
 
-void PersonnelManagementSystem::DeleteMemberByIDNumber(IDNumber idnumber)
+bool PersonnelManagementSystem::DeleteMemberByIDNumber(IDNumber idnumber)
 {
   std::list<UndergraduateStudent>::iterator UndergraduateStudent_Iter = UndergraduateStudent_List.begin();
   for (; UndergraduateStudent_Iter != UndergraduateStudent_List.end(); UndergraduateStudent_Iter++)
@@ -220,7 +229,7 @@ void PersonnelManagementSystem::DeleteMemberByIDNumber(IDNumber idnumber)
       UndergraduateStudent_Iter->printInfo();
       UndergraduateStudent_List.erase(UndergraduateStudent_Iter);
       std::cout << "The member is deleted from database." << std::endl;
-      return;
+      return true;
     }
   }
 
@@ -233,7 +242,7 @@ void PersonnelManagementSystem::DeleteMemberByIDNumber(IDNumber idnumber)
       FullTimePostgraduate_Iter->printInfo();
       FullTimePostgraduate_List.erase(FullTimePostgraduate_Iter);
       std::cout << "The member is deleted from database." << std::endl;
-      return;
+      return true;
     }
   }
 
@@ -246,7 +255,7 @@ void PersonnelManagementSystem::DeleteMemberByIDNumber(IDNumber idnumber)
       OnJobPostgraduate_Iter->printInfo();
       OnJobPostgraduate_List.erase(OnJobPostgraduate_Iter);
       std::cout << "The member is deleted from database." << std::endl;
-      return;
+      return true;
     }
   }
 
@@ -259,7 +268,7 @@ void PersonnelManagementSystem::DeleteMemberByIDNumber(IDNumber idnumber)
       Staff_Iter->printInfo();
       Staff_List.erase(Staff_Iter);
       std::cout << "The member is deleted from database." << std::endl;
-      return;
+      return true;
     }
   }
 
@@ -272,9 +281,11 @@ void PersonnelManagementSystem::DeleteMemberByIDNumber(IDNumber idnumber)
       Teacher_Iter->printInfo();
       Teacher_List.erase(Teacher_Iter);
       std::cout << "The member is deleted from database." << std::endl;
-      return;
+      return true;
     }
   }
+
+  return false;
 }
 
 void PersonnelManagementSystem::LookupMemberByIDNumber(IDNumber idnumber)
@@ -375,14 +386,14 @@ void PersonnelManagementSystem::PrintAllInfos()
   std::cout << "" << std::endl;
 }
 
-void PersonnelManagementSystem::Serialize(std::string &FileName)
+bool PersonnelManagementSystem::Serialize(std::string &FileName)
 {
   std::ofstream outFile(FileName);
 
   if (!outFile.is_open())
   {
     throw std::runtime_error("Unable to open file.");
-    return;
+    return false;
   }
   else
   {
@@ -419,16 +430,19 @@ void PersonnelManagementSystem::Serialize(std::string &FileName)
     outFile.close();
     std::cout << "Database saved." << std::endl;
   }
+
+  return true;
 }
 
-void PMS_Deserialize(PersonnelManagementSystem &system, std::string &FileName)
+bool PMS_Deserialize(PersonnelManagementSystem &system, std::string &FileName)
 {
+  system.Clear();
   std::ifstream inFile(FileName);
 
   if (!inFile.is_open())
   {
     throw std::runtime_error("File not found.");
-    exit(-2);
+    return false;
   }
   else
   {
@@ -555,10 +569,12 @@ void PMS_Deserialize(PersonnelManagementSystem &system, std::string &FileName)
       else
       {
         throw std::runtime_error("Unknow member type, please check database file.");
+        return false;
       }
     }
     inFile.close();
     std::cout << "Database loaded." << std::endl;
+    return true;
   }
 }
 
