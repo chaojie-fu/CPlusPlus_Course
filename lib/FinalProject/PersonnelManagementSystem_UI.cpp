@@ -96,6 +96,11 @@ void PersonnelManagementSystem_UI::MainMenu()
           return;
         }
       }
+      else
+      {
+          std::cout << "System exited." << std::endl;
+          return;
+      }
       break;
     }
     default:
