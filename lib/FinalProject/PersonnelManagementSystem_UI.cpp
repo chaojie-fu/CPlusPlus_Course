@@ -1,4 +1,10 @@
+#include <limits>
 #include "PersonnelManagementSystem_UI.h"
+
+#ifdef DEBUG
+#include <chrono>
+#include <thread>
+#endif
 
 PersonnelManagementSystem_UI::PersonnelManagementSystem_UI()
 {
@@ -33,9 +39,18 @@ void PersonnelManagementSystem_UI::MainMenu()
     std::cout << "[6] Exit system" << std::endl;
     std::cout << "===================================================" << std::endl;
     std::cout << std::endl;
+#ifdef DEBUG
+    std::this_thread::sleep_for(std::chrono::milliseconds(100));
+#endif
     int choice_main = -1;
     std::cout << "Input your choice: ";
     std::cin >> choice_main;
+    if (std::cin.fail())
+    {
+      choice_main = -1;
+      std::cin.clear();
+      std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
+    }
     switch (choice_main)
     {
     case 0:
@@ -70,8 +85,18 @@ void PersonnelManagementSystem_UI::MainMenu()
     }
     case 6:
     {
-      std::cout << "System exited." << std::endl;
-      return;
+      if (is_latest == false)
+      {
+        std::cout << "Your data have not been saved, do you still want to exit? [Y/N]: ";
+        std::string continue_flag;
+        std::cin >> continue_flag;
+        if (continue_flag == "Y" || continue_flag == "y")
+        {
+          std::cout << "System exited." << std::endl;
+          return;
+        }
+      }
+      break;
     }
     default:
     {
@@ -80,7 +105,7 @@ void PersonnelManagementSystem_UI::MainMenu()
     }
     }
     std::cin.clear();
-    std::cin.ignore();
+    std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
   }
 }
 
@@ -96,8 +121,19 @@ void PersonnelManagementSystem_UI::InsertMemeberUI()
   std::cout << "[4] Teacher" << std::endl;
   std::cout << "[5] Go back to main menu" << std::endl;
   std::cout << "Input your choice: ";
+
   int choice_insert = -1;
   std::cin >> choice_insert;
+  if (std::cin.fail())
+  {
+    choice_insert = -1;
+    std::cin.clear();
+    std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
+  }
+
+#ifdef DEBUG
+  std::cout << choice_insert << std::endl;
+#endif
   std::cout << "===================================================" << std::endl;
   std::cout << std::endl;
   switch (choice_insert)
@@ -119,6 +155,9 @@ void PersonnelManagementSystem_UI::InsertMemeberUI()
     std::cin >> gender_flag;
     while (gender_flag != 0 && gender_flag != 1)
     {
+#ifdef DEBUG
+      std::this_thread::sleep_for(std::chrono::milliseconds(100));
+#endif
       std::cout << "Invalid Gender" << std::endl;
     }
     if (gender_flag == 0)
@@ -164,6 +203,9 @@ void PersonnelManagementSystem_UI::InsertMemeberUI()
     std::cin >> gender_flag;
     while (gender_flag != 0 && gender_flag != 1)
     {
+#ifdef DEBUG
+      std::this_thread::sleep_for(std::chrono::milliseconds(100));
+#endif
       std::cout << "Invalid Gender" << std::endl;
     }
     if (gender_flag == 0)
@@ -211,6 +253,9 @@ void PersonnelManagementSystem_UI::InsertMemeberUI()
     std::cin >> gender_flag;
     while (gender_flag != 0 && gender_flag != 1)
     {
+#ifdef DEBUG
+      std::this_thread::sleep_for(std::chrono::milliseconds(100));
+#endif
       std::cout << "Invalid Gender" << std::endl;
     }
     if (gender_flag == 0)
@@ -263,6 +308,9 @@ void PersonnelManagementSystem_UI::InsertMemeberUI()
     std::cin >> gender_flag;
     while (gender_flag != 0 && gender_flag != 1)
     {
+#ifdef DEBUG
+      std::this_thread::sleep_for(std::chrono::milliseconds(100));
+#endif
       std::cout << "Invalid Gender" << std::endl;
     }
     if (gender_flag == 0)
@@ -312,6 +360,9 @@ void PersonnelManagementSystem_UI::InsertMemeberUI()
     std::cin >> gender_flag;
     while (gender_flag != 0 && gender_flag != 1)
     {
+#ifdef DEBUG
+      std::this_thread::sleep_for(std::chrono::milliseconds(100));
+#endif
       std::cout << "Invalid Gender" << std::endl;
     }
     if (gender_flag == 0)
