@@ -1,5 +1,5 @@
-# include <iostream>
-# include "MyMatrix3.h"
+#include <iostream>
+#include "MyMatrix3.h"
 
 int main()
 {
@@ -53,17 +53,17 @@ int main()
   std::cout << "========================================" << std::endl;
   std::cout << "Test Multiple Operator" << std::endl;
   MyMatrix3<int> A(3, 2);
-  for (size_t num_row = 0; num_row < 3; num_row ++)
+  for (size_t num_row = 0; num_row < 3; num_row++)
   {
-    for (size_t num_col = 0; num_col < 2; num_col ++)
+    for (size_t num_col = 0; num_col < 2; num_col++)
     {
       A.setValue(num_row, num_col, 1);
     }
   }
   MyMatrix3<int> B(2, 4);
-  for (size_t num_row = 0; num_row < 2; num_row ++)
+  for (size_t num_row = 0; num_row < 2; num_row++)
   {
-    for (size_t num_col = 0; num_col < 4; num_col ++)
+    for (size_t num_col = 0; num_col < 4; num_col++)
     {
       B.setValue(num_row, num_col, num_row * 2 + num_col * 3);
     }
