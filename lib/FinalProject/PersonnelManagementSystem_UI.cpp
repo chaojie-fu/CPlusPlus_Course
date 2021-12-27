@@ -29,7 +29,9 @@ void PersonnelManagementSystem_UI::MainMenu()
   while (true)
   {
     std::cout << std::endl;
+    std::cout << "===================================================" << std::endl;
     std::cout << "==================== Main Menu ====================" << std::endl;
+    std::cout << "===================================================" << std::endl;
     std::cout << "[0] Insert New Member" << std::endl;
     std::cout << "[1] Delete Member by ID number" << std::endl;
     std::cout << "[2] Look up Member by ID number" << std::endl;
