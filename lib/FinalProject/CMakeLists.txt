@@ -1,3 +1,6 @@
 add_library(MemberTypes MemberTypes.h MemberTypes.cpp)
-add_library(PersonnelManagementSystem PersonnelManagementSystem.h PersonnelManagementSystem.cpp MemberTypes.h MemberTypes.cpp)
-add_library(PMS_UI PersonnelManagementSystem.h PersonnelManagementSystem.cpp MemberTypes.h MemberTypes.cpp PersonnelManagementSystem_UI.h PersonnelManagementSystem_UI.cpp)
+add_library(PersonnelManagementSystem PersonnelManagementSystem.h PersonnelManagementSystem.cpp)
+add_library(PMS_UI PersonnelManagementSystem_UI.h PersonnelManagementSystem_UI.cpp)
+
+target_link_libraries(PersonnelManagementSystem PUBLIC MemberTypes)
+target_link_libraries(PMS_UI PUBLIC PersonnelManagementSystem)
