@@ -17,6 +17,13 @@ make
 if want to enable debug information, run
 
 ``` bash
-cmake .. -DBUILD=Debug
+cmake .. -DCMAKE_BUILD_TYPE=Debug
+make
+```
+
+if want to enable optimization for compiling, run
+
+``` bash
+cmake .. -DCMAKE_BUILD_TYPE=Release
 make
 ```
