@@ -1,6 +1,8 @@
 add_library(MemberTypes MemberTypes.h MemberTypes.cpp)
 add_library(PersonnelManagementSystem PersonnelManagementSystem.h PersonnelManagementSystem.cpp)
+add_library(HeterogeneousList HeterogeneousList.h HeterogeneousList.cpp)
 add_library(PMS_UI PersonnelManagementSystem_UI.h PersonnelManagementSystem_UI.cpp)
 
 target_link_libraries(PersonnelManagementSystem PUBLIC MemberTypes)
+target_link_libraries(HeterogeneousList PUBLIC MemberTypes)
 target_link_libraries(PMS_UI PUBLIC PersonnelManagementSystem)
